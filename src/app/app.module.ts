@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 
 import { BarraNavegacaoComponent } from './barra-navegacao/barra-navegacao.component';
 import { MenuModule } from './menu/menu.module';
+import { AcessoComponent } from './acesso/acesso.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BarraNavegacaoComponent
+    BarraNavegacaoComponent,
+    AcessoComponent
   ],
   imports: [
     BrowserModule,

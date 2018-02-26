@@ -1,23 +1,44 @@
-<div class="row">
-    <div class="col s12">
-        <ul class="tabs">
-            <li class="tab col s2">
-                <a class="active" href="#cadastrar">Cadastrar</a>
-            </li>
-            <li class="tab col s2">
-                <a href="#alterar">Alterar</a>
-            </li>
-            <li class="tab col s2">
-                <a href="#excluir">Excluir</a>
-            </li>
-        </ul>
-    </div>
-    <div id="cadastrar" class="col s12">
-        <a class="waves-effect waves-light btn">
-            <i class="material-icons left">person</i>
-            Pessoa
-        </a>
-    </div>
-    <div id="alterar" class="col s12">Alteração</div>
-    <div id="excluir" class="col s12">Exclusão</div>
+<div id="cadastrar" class="col s12 brown lighten-4">
+    <a class='dropdown-button waves-effect waves-teal btn-flat btn-large' href='#' data-activates='solicitante'>
+        <i class="material-icons small left">person</i>Silicitante
+    </a>
+    <ul id='solicitante' class='dropdown-content'>
+        <li>
+            <a href="#!">
+                <i class="material-icons">add</i>Cadastrar
+            </a>
+        </li>
+        <li>
+            <a href="#!">
+                <i class="material-icons">create</i>Alterar
+            </a>
+        </li>
+        <li>
+            <a href="#!">
+                <i class="material-icons">delete</i>Remover
+            </a>
+        </li>
+    </ul>
+
+    <a class='dropdown-button waves-effect waves-teal btn-flat btn-large' href='#' data-activates='beneficio'>
+        <i class="material-icons small left">add_shopping_cart</i>Benefício
+    </a>
+
+    <ul id='beneficio' class='dropdown-content'>
+        <li>
+            <a href="#!">
+                <i class="material-icons">add</i>Cadastrar
+            </a>
+        </li>
+        <li>
+            <a href="#!">
+                <i class="material-icons">create</i>Alterar
+            </a>
+        </li>
+        <li>
+            <a href="#!">
+                <i class="material-icons">delete</i>Remover
+            </a>
+        </li>
+    </ul>
 </div>
