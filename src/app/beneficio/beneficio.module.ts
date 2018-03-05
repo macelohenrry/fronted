@@ -1,6 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DataTableModule } from 'primeng/components/datatable/datatable';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+
+import { InputTextModule } from 'primeng/components/inputtext/inputtext';
+import { ButtonModule } from 'primeng/components/button/button';
 import { BeneficioRoutingModule } from './beneficio.routing.module';
 
 import { BeneficioComponent } from './beneficio.component';
@@ -11,6 +18,12 @@ import { BeneficioService } from './beneficio.service';
 @NgModule({
   imports: [
     CommonModule,
+    DataTableModule,
+    BrowserAnimationsModule,
+    InputTextModule,
+    ButtonModule,
+    HttpModule,
+    ReactiveFormsModule,
     BeneficioRoutingModule
   ],
   exports: [

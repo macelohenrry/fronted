@@ -12,7 +12,7 @@ export class BeneficioService {
   constructor() { }
 
   getBeneficios() {
-
+    return this.beneficios;
   }
 
 }

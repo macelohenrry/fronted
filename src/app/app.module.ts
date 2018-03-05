@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MenuModule } from './menu/menu.module';
 import { BeneficioModule } from './beneficio/beneficio.module';
@@ -26,6 +27,7 @@ import { InicioComponent } from './inicio/inicio.component';
     HttpModule,
     MenuModule,
     BeneficioModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],

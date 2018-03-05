@@ -9,9 +9,11 @@ import { BeneficioService } from './beneficio.service';
 })
 export class BeneficioComponent implements OnInit {
 
+  private beneficios: any[] = [];
   constructor(private beneficioService: BeneficioService) { }
 
   ngOnInit() {
+    this.beneficios = this.beneficioService.getBeneficios();
   }
 
 }

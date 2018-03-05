@@ -1,3 +1,17 @@
-<p>
-  beneficio-form works!
-</p>
+<div class="row">
+  <h5>Informação do Benefício</h5>
+
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="input-field col s6" >
+        <input id="descricao" type="text" pInputText formControlName="descricao" >
+        <label for="descricao">Descrição</label>
+      </div>
+    </div>
+
+    <p-button type="submit" icon="fa fa-fw fa-check" label="Cadastrar"></p-button>
+
+  </form>
+
+</div>
