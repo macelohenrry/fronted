@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { ButtonModule } from 'primeng/components/button/button';
+import { InputTextModule } from 'primeng/components/inputtext/inputtext';
+
 import { MenuModule } from './menu/menu.module';
 import { BeneficioModule } from './beneficio/beneficio.module';
 
@@ -13,6 +16,7 @@ import { AppComponent } from './app.component';
 import { BarraNavegacaoComponent } from './barra-navegacao/barra-navegacao.component';
 import { AcessoComponent } from './acesso/acesso.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { AcessoService } from './acesso/acesso.service';
 
 
 @NgModule({
@@ -27,10 +31,12 @@ import { InicioComponent } from './inicio/inicio.component';
     HttpModule,
     MenuModule,
     BeneficioModule,
+    InputTextModule,
+    ButtonModule,
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AcessoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
