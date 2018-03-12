@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Http } from '@angular/http';
 
+import { BeneficioService } from './../beneficio.service';
+
 @Component({
   selector: 'app-beneficio-form',
   templateUrl: './beneficio-form.component.html',
@@ -9,9 +11,10 @@ import { Http } from '@angular/http';
 })
 export class BeneficioFormComponent implements OnInit {
 
-  formulario: FormGroup;
+  formBeneficio: FormGroup;
 
   constructor(
+    private beneficioService: BeneficioService,
     private http: Http,
     private formBuilder: FormBuilder
   ) { }
@@ -22,14 +25,13 @@ export class BeneficioFormComponent implements OnInit {
       descricao: new FormControl(null)
     });*/
 
-    this.formulario = this.formBuilder.group({
+    this.formBeneficio = this.formBuilder.group({
       descricao: [null]
     });
   }
 
   onSubmit() {
-    this.http.post('/beneficios', JSON.stringify(this.formulario.value))
-      .subscribe(dados => console.log(dados));
+    this.beneficioService.onSubmit(this.formBeneficio);
 
   }
 
