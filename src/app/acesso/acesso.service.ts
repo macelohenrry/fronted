@@ -7,27 +7,33 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class AcessoService {
 
-  public token: string;
   private url = "http://localhost:8080";
 
-  options = new RequestOptions({
-    headers: new Headers({
-      'Content-Type': 'application/json'
-    })
-  });
+  /*
+  https://chariotsolutions.com/blog/post/angular-2-spring-boot-jwt-cors_part1/
+  https://chariotsolutions.com/blog/post/angular-2-spring-boot-jwt-cors_part2/
+  https://www.toptal.com/java/rest-security-with-jwt-spring-security-and-java
+  https://github.com/szerhusenBC/jwt-spring-security-demo
+  https://github.com/rfreedman/angular-tour-of-heroes-complete
+
+
+  http://www.baeldung.com/rest-api-spring-oauth2-angularjs
+  http://www.baeldung.com/angular-4-upgrade-for-spring-security-oauth/
+
+  https://gigsterous.github.io/engineering/2017/03/01/spring-boot-4.html
+  */
   constructor(private http: Http, private formBuilder: FormBuilder) { 
 
   }
 
+  headers = new Headers({'Content-Type': 'application/json'});
+
   onSubmit(formularioLogin: FormGroup) {
-    this.http.post(`${this.url}/login`, JSON.stringify(formularioLogin.value), this.options)
+    this.http.post(`${this.url}/login`, JSON.stringify(formularioLogin.value))
       .map((response: Response) => {
         
         console.log(response.json().token);
       })
       .subscribe(dados => console.log(dados));
-      
   }
-
-
 }
