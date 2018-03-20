@@ -26,14 +26,15 @@ export class AcessoService {
 
   }
 
-  headers = new Headers({'Content-Type': 'application/json'});
+  myHeaders = new Headers({ 'Content-Type': 'application/json', 'Cache-Control': 'no-cache' });
+  options = new RequestOptions({headers: this.myHeaders});
 
   onSubmit(formularioLogin: FormGroup) {
-    this.http.post(`${this.url}/login`, JSON.stringify(formularioLogin.value))
-      .map((response: Response) => {
+    this.http.post(`${this.url}/login`, JSON.stringify(formularioLogin.value), this.options)
+      /*.map((response: Response) => {
         
         console.log(response.json().token);
-      })
+      })*/
       .subscribe(dados => console.log(dados));
   }
 }
