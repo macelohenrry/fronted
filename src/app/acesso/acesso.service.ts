@@ -16,6 +16,7 @@ export class AcessoService {
   https://github.com/szerhusenBC/jwt-spring-security-demo
   https://github.com/rfreedman/angular-tour-of-heroes-complete
 
+  https://github.com/hendisantika/spring-boot-security-oauth2-example
 
   http://www.baeldung.com/rest-api-spring-oauth2-angularjs
   http://www.baeldung.com/angular-4-upgrade-for-spring-security-oauth/
