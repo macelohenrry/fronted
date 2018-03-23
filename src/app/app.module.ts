@@ -16,7 +16,7 @@ import { AppComponent } from './app.component';
 import { BarraNavegacaoComponent } from './barra-navegacao/barra-navegacao.component';
 import { AcessoComponent } from './acesso/acesso.component';
 import { InicioComponent } from './inicio/inicio.component';
-import { AcessoService } from './acesso/acesso.service';
+import { AuthService } from './acesso/auth.service';
 
 
 @NgModule({
@@ -36,7 +36,7 @@ import { AcessoService } from './acesso/acesso.service';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [AcessoService],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
