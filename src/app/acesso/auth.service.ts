@@ -24,14 +24,14 @@ export class AuthService {
     const body = `username=${formularioLogin.value.username}&password=${formularioLogin.value.password}&grant_type=password`;
 
     this.http.post(this.oauthUrl, body, {headers, withCredentials: true})
-      /*.map((response: Response) => {
+      .map((response: Response) => {
         console.log(response.json().access_token);
         this.armazenarToken(response.json().access_token);
-      })*/
-      .subscribe(dados => this.armazenarToken(dados.json().access_token));
+      })      
+      .subscribe();
   }
 
-  private armazenarToken(token: string){
+  private armazenarToken(token: string) {
     localStorage.setItem("token", token);
   }
 
