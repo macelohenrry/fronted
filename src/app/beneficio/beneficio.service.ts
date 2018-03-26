@@ -40,7 +40,5 @@ export class BeneficioService {
     return this.beneficios;
   }
 
-  
-
 
 }
