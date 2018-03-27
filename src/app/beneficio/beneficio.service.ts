@@ -11,10 +11,6 @@ export class BeneficioService {
 
   url = "http://localhost:8080";
 
-  private headers = new Headers({
-    'Content-Type': 'application/json'
-    });
-
   private beneficios: any[] = [
     {id: 1, descricao: 'Bolsa Família', status: true},
     {id: 2, descricao: 'Bolsa Frauda', status: true},
@@ -27,11 +23,14 @@ export class BeneficioService {
 
   onSubmit(formBeneficio: FormGroup) {
 
-    let headers = new Headers({'Content-Type': 'application/json'});
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer' 
+    });
     let options = new RequestOptions({headers});
 
-    console.log(formBeneficio);
-    this.http.post(`${this.url}/beneficios`, JSON.stringify(formBeneficio.value), options)
+    console.log(localStorage.getItem('token'));
+    this.http.post(`${this.url}/beneficios`, JSON.stringify(formBeneficio.value) + `&${localStorage.getItem('token')}`, options)
       .map(res => console.log(res))
       .subscribe(dados => console.log(dados));
   }

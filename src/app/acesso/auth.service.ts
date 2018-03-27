@@ -8,15 +8,15 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class AuthService {
  
-  oauthUrl = 'http://localhost:8080/oauth/token';
-
+  //oauthUrl = 'http://localhost:8080/oauth/token';
+  url = "http://localhost:8080";
   constructor(
    private http: Http, 
    private formBuilder: FormBuilder) { 
 
   }
 
-  onSubmit(formularioLogin: FormGroup) {
+  /*onSubmit(formularioLogin: FormGroup) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     headers.append('Authorization', 'Basic aGVuZGktY2xpZW50OmhlbmRpLXNlY3JldA==');
@@ -33,6 +33,15 @@ export class AuthService {
 
   private armazenarToken(token: string) {
     localStorage.setItem("token", token);
+  }*/
+
+  onSubmit(formularioLogin: FormGroup) {
+    this.http.post(`${this.url}/login`, JSON.stringify(formularioLogin.value))
+    .map((response: Response) => {
+      // login successful if there's a jwt token in the response
+      console.log(response);
+   })
+      .subscribe(res => console.log(res));
   }
 
   /*
