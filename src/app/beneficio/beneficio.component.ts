@@ -1,3 +1,4 @@
+import { Beneficio } from './../model/beneficio';
 import { Component, OnInit } from '@angular/core';
 
 import { BeneficioService } from './beneficio.service';
@@ -9,7 +10,7 @@ import { BeneficioService } from './beneficio.service';
 })
 export class BeneficioComponent implements OnInit {
 
-  private beneficios: any[] = [];
+  private beneficios: any[];
   constructor(private beneficioService: BeneficioService) { }
 
   ngOnInit() {

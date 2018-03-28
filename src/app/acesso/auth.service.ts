@@ -30,18 +30,19 @@ export class AuthService {
       })      
       .subscribe();
   }
-
-  private armazenarToken(token: string) {
-    localStorage.setItem("token", token);
-  }*/
+*/
 
   onSubmit(formularioLogin: FormGroup) {
     this.http.post(`${this.url}/login`, JSON.stringify(formularioLogin.value))
     .map((response: Response) => {
-      // login successful if there's a jwt token in the response
-      console.log(response);
-   })
-      .subscribe(res => console.log(res));
+      this.armazenarToken(response.text());
+      console.log(response.text())
+    })
+    .subscribe(res => res);
+  }
+
+  private armazenarToken(token: string) {
+    localStorage.setItem("token", token);
   }
 
   /*
