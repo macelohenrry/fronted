@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
+
+import 'rxjs/add/operator/map';
 
 import { BeneficioService } from './../beneficio.service';
+
 
 @Component({
   selector: 'app-beneficio-form',
@@ -31,7 +34,13 @@ export class BeneficioFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.beneficioService.onSubmit(this.formBeneficio);
+    this.beneficioService.onSubmit(this.formBeneficio)
+    .map((response: Response) => {
+      console.log(response.ok)
+    })
+    .subscribe(
+      res => res,
+      error => console.log(error));
 
   }
 

@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { BeneficioService } from './beneficio.service';
 
+import 'rxjs/add/operator/catch';
+
 @Component({
   selector: 'app-beneficio',
   templateUrl: './beneficio.component.html',
@@ -10,11 +12,12 @@ import { BeneficioService } from './beneficio.service';
 })
 export class BeneficioComponent implements OnInit {
 
-  private beneficios: any[];
+  private beneficios: Beneficio[];
   constructor(private beneficioService: BeneficioService) { }
 
   ngOnInit() {
-    this.beneficios = this.beneficioService.getBeneficios();
+    this.beneficioService.getBeneficios()
+      .subscribe(beneficios => this.beneficios = beneficios);
   }
 
 }

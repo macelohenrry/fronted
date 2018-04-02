@@ -1,3 +1,4 @@
+import { SheredModule } from './shered/shered.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
@@ -29,11 +30,13 @@ import { AuthService } from './acesso/auth.service';
   imports: [
     BrowserModule,
     HttpModule,
+    ReactiveFormsModule,
     MenuModule,
     BeneficioModule,
     InputTextModule,
     ButtonModule,
-    ReactiveFormsModule,
+    SheredModule,
+    
     AppRoutingModule
   ],
   providers: [AuthService],

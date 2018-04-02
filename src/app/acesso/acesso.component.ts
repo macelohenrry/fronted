@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
+import { Router } from '@angular/router'
 
+import { Acesso } from './../model/acesso';
 import { AuthService } from './auth.service';
+
 
 @Component({
   selector: 'app-acesso',
@@ -11,9 +14,15 @@ import { AuthService } from './auth.service';
 })
 export class AcessoComponent implements OnInit {
 
-  formularioLogin: FormGroup;
+  private formularioLogin: FormGroup;
+  private acesso: Acesso;
 
-  constructor(private http: Http, private formBuilder: FormBuilder, private authService : AuthService) {
+  constructor(
+    private router: Router, 
+    private http: Http, 
+    private formBuilder: FormBuilder, 
+    private authService : AuthService
+    ) {
     
    }
 
@@ -25,8 +34,16 @@ export class AcessoComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.onSubmit(this.formularioLogin);
-
+    this.authService.onSubmit(this.formularioLogin)
+    .subscribe(
+      res => {
+        this.authService.armazenarToken(res.text())
+        this.router.navigate(['/']);
+      },
+      error => {
+        
+      }
+  );
   }
 
 }

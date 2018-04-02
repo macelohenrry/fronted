@@ -2,46 +2,22 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
-
 @Injectable()
 export class AuthService {
  
-  //oauthUrl = 'http://localhost:8080/oauth/token';
   url = "http://localhost:8080";
+
   constructor(
-   private http: Http, 
-   private formBuilder: FormBuilder) { 
-
+    private http: Http, 
+    private formBuilder: FormBuilder
+    ) { 
   }
-
-  /*onSubmit(formularioLogin: FormGroup) {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    headers.append('Authorization', 'Basic aGVuZGktY2xpZW50OmhlbmRpLXNlY3JldA==');
-
-    const body = `username=${formularioLogin.value.username}&password=${formularioLogin.value.password}&grant_type=password`;
-
-    this.http.post(this.oauthUrl, body, {headers, withCredentials: true})
-      .map((response: Response) => {
-        console.log(response.json().access_token);
-        this.armazenarToken(response.json().access_token);
-      })      
-      .subscribe();
-  }
-*/
 
   onSubmit(formularioLogin: FormGroup) {
-    this.http.post(`${this.url}/login`, JSON.stringify(formularioLogin.value))
-    .map((response: Response) => {
-      this.armazenarToken(response.text());
-      console.log(response.text())
-    })
-    .subscribe(res => res);
+    return this.http.post(`${this.url}/login`, JSON.stringify(formularioLogin.value));
   }
 
-  private armazenarToken(token: string) {
+  armazenarToken(token: string) {
     localStorage.setItem("token", token);
   }
 
