@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Beneficio } from './../model/beneficio';
+import { Beneficio } from './../model/model';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -18,7 +18,7 @@ export class BeneficioService {
   private headers = new Headers({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem("token")}` 
-    });
+  });
 
   constructor(private http: Http, private formBuilder: FormBuilder) { 
 

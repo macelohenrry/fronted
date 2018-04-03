@@ -1,18 +1,15 @@
-<div class="row">
-  <div class="col">
-    <p-dataTable [value]="beneficios" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
-      <p-header>Lista dos Benefícios</p-header>
-      <p-column field="id" header="Id"></p-column>
-      <p-column field="descricao" header="Descricao"></p-column>
-      <p-column field="status" header="Status"></p-column>
-      <p-column>
-        <ng-template let-car="rowData" pTemplate="body" >
-            <button class="btn-floating waves-effect waves-light red" type="submit" name="action">
-              <i class="material-icons right">create</i>
-            </button>
-        </ng-template>
-      </p-column>
-      <p-footer>benefícios encontrados até o momento</p-footer>
-    </p-dataTable>
-  </div>
+<div class="col s12 m12 l9">
+  <p-dataTable [value]="beneficios" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+    <p-header>Lista dos Benefícios</p-header>
+    <p-column field="id" header="Id"></p-column>
+    <p-column field="descricao" header="Descricao"></p-column>
+    <p-column field="status" header="Status"></p-column>
+    <p-column>
+      <ng-template let-car="rowData" pTemplate="body">
+        <button class="btn-floating waves-effect waves-light red" type="submit" name="action">
+          <i class="material-icons right">create</i>
+        </button>
+      </ng-template>
+    </p-column>
+  </p-dataTable>
 </div>

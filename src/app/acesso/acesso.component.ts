@@ -3,7 +3,11 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Http, Response } from '@angular/http';
 import { Router } from '@angular/router'
 
-import { Acesso } from './../model/acesso';
+import { MessageService } from 'primeng/components/common/messageservice';
+import { Message } from 'primeng/components/common/api';
+
+import { EMensage } from './../model/model';
+import { Acesso } from './../model/model';
 import { AuthService } from './auth.service';
 
 
@@ -16,12 +20,14 @@ export class AcessoComponent implements OnInit {
 
   private formularioLogin: FormGroup;
   private acesso: Acesso;
+  msgs: Message[] = [];
 
   constructor(
     private router: Router, 
     private http: Http, 
     private formBuilder: FormBuilder, 
-    private authService : AuthService
+    private authService : AuthService,
+    private messageService: MessageService
     ) {
     
    }
@@ -37,13 +43,20 @@ export class AcessoComponent implements OnInit {
     this.authService.onSubmit(this.formularioLogin)
     .subscribe(
       res => {
-        this.authService.armazenarToken(res.text())
         this.router.navigate(['/']);
       },
       error => {
-        
+        this.messageService.add({severity: 'error', summary: 'Erro', detail: EMensage.ErroLogin});
       }
-  );
+    );
+  }
+
+  logout() {
+    this.authService.logout()
+      .subscribe(
+        res => res,
+        error => console.log(error)
+      );
   }
 
 }

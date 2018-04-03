@@ -18,6 +18,7 @@ import { BarraNavegacaoComponent } from './barra-navegacao/barra-navegacao.compo
 import { AcessoComponent } from './acesso/acesso.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { AuthService } from './acesso/auth.service';
+import { AuthGuard } from './guards/auth.guard';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import { AuthService } from './acesso/auth.service';
     
     AppRoutingModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

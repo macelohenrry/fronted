@@ -1,44 +1,94 @@
-<div id="cadastrar" class="col s12 brown lighten-4">
-    <a class='dropdown-button waves-effect waves-teal btn-flat btn-large' href='#' data-activates='solicitante'>
-        <i class="material-icons small left">person</i>Solicitante
-    </a>
-    <ul id='solicitante' class='dropdown-content'>
-        <li>
-            <a>
-                <i class="material-icons">add</i>Cadastrar
-            </a>
-        </li>
-        <li>
-            <a href="#!">
-                <i class="material-icons">create</i>Alterar
-            </a>
-        </li>
-        <li>
-            <a href="#!">
-                <i class="material-icons">delete</i>Remover
-            </a>
-        </li>
-    </ul>
-
-    <a class='dropdown-button waves-effect waves-teal btn-flat btn-large' href='#' data-activates='beneficio'>
-        <i class="material-icons small left">add_shopping_cart</i>Benefício
-    </a>
-
-    <ul id='beneficio' class='dropdown-content'>
-        <li>
-            <a routerLink="/beneficios/novo">
-                <i class="material-icons">add</i>Cadastrar
-            </a>
-        </li>
-        <li>
-            <a routerLink="/beneficios">
-                <i class="material-icons">create</i>Alterar
-            </a>
-        </li>
-        <li>
-            <a routerLink="/beneficios">
-                <i class="material-icons">delete</i>Remover
-            </a>
-        </li>
-    </ul>
+<div class="col s12 m12 l3">
+    <p-accordion>
+        <p-accordionTab header="Socilitante">
+            <div class="collection">
+                <a routerLink="/beneficios/novo" class="collection-item">Cadastrar</a>
+                <a routerLink="/beneficios" class="collection-item">Pesquisar</a>
+            </div>
+        </p-accordionTab>
+        <p-accordionTab header="Benefício">
+            <div class="collection">
+                <a routerLink="/beneficios/novo" class="collection-item">Cadastrar</a>
+                <a routerLink="/beneficios" class="collection-item">Pesquisar</a>
+            </div>
+        </p-accordionTab>
+    </p-accordion>
 </div>
+
+
+
+<!--
+    <ul materialize="collapsible" class="collapsible popout" data-collapsible="accordion">
+        <li>
+            <div class="collapsible-header">
+                <i class="material-icons">filter_drama</i>First</div>
+            <div class="collapsible-body">
+                <span>Lorem ipsum dolor sit amet.</span>
+                <span>Lorem ipsum dolor sit amet.</span>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header">
+                <i class="material-icons">place</i>Benefício</div>
+            <div class="collapsible-body">
+                <a routerLink="/beneficios/novo">
+                    <span>Cadastrar</span>
+                </a>
+                <a routerLink="/beneficios/novo">
+                    <span>Cadastrar</span>
+                </a>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header">
+                <i class="material-icons">whatshot</i>Third</div>
+            <div class="collapsible-body">
+                <span>Lorem ipsum dolor sit amet.</span>
+            </div>
+        </li>
+    </ul>
+
+
+
+<a class='dropdown-button waves-effect waves-teal btn-flat btn-large' href='#' data-activates='solicitante'>
+    <i class="material-icons small left">person</i>Solicitante
+</a>
+<ul id='solicitante' class='dropdown-content'>
+    <li>
+        <a>
+            <i class="material-icons">add</i>Cadastrar
+        </a>
+    </li>
+    <li>
+        <a href="#!">
+            <i class="material-icons">create</i>Alterar
+        </a>
+    </li>
+    <li>
+        <a href="#!">
+            <i class="material-icons">delete</i>Remover
+        </a>
+    </li>
+</ul>
+
+<a class='dropdown-button waves-effect waves-teal btn-flat btn-large' href='#' data-activates='beneficio'>
+    <i class="material-icons small left">add_shopping_cart</i>Benefício
+</a>
+
+<ul id='beneficio' class='dropdown-content'>
+    <li>
+        <a routerLink="/beneficios/novo">
+            <i class="material-icons">add</i>Cadastrar
+        </a>
+    </li>
+    <li>
+        <a routerLink="/beneficios">
+            <i class="material-icons">create</i>Alterar
+        </a>
+    </li>
+    <li>
+        <a routerLink="/beneficios">
+            <i class="material-icons">delete</i>Remover
+        </a>
+    </li>
+</ul>-->

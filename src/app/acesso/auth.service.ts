@@ -1,6 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AuthService {
@@ -13,12 +16,43 @@ export class AuthService {
     ) { 
   }
 
-  onSubmit(formularioLogin: FormGroup) {
-    return this.http.post(`${this.url}/login`, JSON.stringify(formularioLogin.value));
+  private headers = new Headers({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}` 
+  });
+
+  onSubmit(formularioLogin: FormGroup): Observable<void> {
+    return this.http.post(`${this.url}/login`, JSON.stringify(formularioLogin.value))
+      .map(res => {
+        this.armazenarToken(res.text());
+      })
+      .catch(error => Observable.throw(error.message));
   }
 
-  armazenarToken(token: string) {
+  /*onSubmit(formularioLogin: FormGroup) {
+    return this.http.post(`${this.url}/login`, JSON.stringify(formularioLogin.value));
+  }*/
+
+  private armazenarToken(token: string) {
     localStorage.setItem("token", token);
+  }
+
+  limparAccessToken(){
+    localStorage.removeItem("token");
+  }
+
+  isTokenValido() {
+    const token = localStorage.getItem("token");
+    console.log(token);
+    return token;
+  }
+
+  logout() {
+    return this.http.post(`${this.url}/logout`, {headers: this.headers})
+      .map(res => {
+        this.limparAccessToken();
+      })
+      .catch(error => Observable.throw(error.message));
   }
 
   /*
@@ -34,6 +68,9 @@ export class AuthService {
   http://www.baeldung.com/angular-4-upgrade-for-spring-security-oauth/
   
   https://gigsterous.github.io/engineering/2017/03/01/spring-boot-4.html
+
+  https://imasters.com.br/desenvolvimento/angular-2-enviando-dados-com-http-post/?trace=1519021197&source=single
+  https://www.concretepage.com/angular-2/angular-2-http-post-example
   */
 
 }

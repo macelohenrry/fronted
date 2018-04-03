@@ -16,8 +16,5 @@ export class MensagemComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  showViaService() {
-    this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
-  }
+ 
 }

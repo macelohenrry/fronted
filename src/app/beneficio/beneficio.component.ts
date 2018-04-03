@@ -1,4 +1,4 @@
-import { Beneficio } from './../model/beneficio';
+import { Beneficio } from './../model/model';
 import { Component, OnInit } from '@angular/core';
 
 import { BeneficioService } from './beneficio.service';

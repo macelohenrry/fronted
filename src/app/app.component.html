@@ -1,8 +1,9 @@
-
 <app-barra-navegacao></app-barra-navegacao>
-<app-menu></app-menu>
 <app-mensagem></app-mensagem>
 
-<div class="container">
+<div class="row">
+        <app-menu *ngIf="exibindoNavbar()" ></app-menu>
         <router-outlet></router-outlet>
 </div>
+
+
