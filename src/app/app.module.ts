@@ -1,19 +1,19 @@
-import { SheredModule } from './shered/shered.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AppRoutingModule } from './app.routing.module';
 
 import { ButtonModule } from 'primeng/components/button/button';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 
+import { SheredModule } from './shered/shered.module';
 import { MenuModule } from './menu/menu.module';
-import { BeneficioModule } from './beneficio/beneficio.module';
-
-import { AppRoutingModule } from './app.routing.module';
 
 import { AppComponent } from './app.component';
-
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { BarraNavegacaoComponent } from './barra-navegacao/barra-navegacao.component';
 import { AcessoComponent } from './acesso/acesso.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -26,14 +26,15 @@ import { AuthGuard } from './guards/auth.guard';
     AppComponent,
     BarraNavegacaoComponent,
     AcessoComponent,
-    InicioComponent
+    InicioComponent,
+    PaginaNaoEncontradaComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     MenuModule,
-    BeneficioModule,
     InputTextModule,
     ButtonModule,
     SheredModule,

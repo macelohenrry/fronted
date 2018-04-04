@@ -23,14 +23,14 @@ export class AcessoComponent implements OnInit {
   msgs: Message[] = [];
 
   constructor(
-    private router: Router, 
-    private http: Http, 
-    private formBuilder: FormBuilder, 
-    private authService : AuthService,
+    private router: Router,
+    private http: Http,
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
     private messageService: MessageService
-    ) {
-    
-   }
+  ) {
+
+  }
 
   ngOnInit() {
     this.formularioLogin = this.formBuilder.group({
@@ -41,23 +41,14 @@ export class AcessoComponent implements OnInit {
 
   onSubmit() {
     this.authService.onSubmit(this.formularioLogin)
-    .subscribe(
-      res => {
-        this.router.navigate(['/']);
-      },
-      error => {
-        this.messageService.add({severity: 'error', summary: 'Erro', detail: EMensage.ErroLogin});
-      }
-    );
-  }
-
-  logout() {
-    this.authService.logout()
       .subscribe(
-        res => res,
-        error => console.log(error)
+        res => {
+          this.router.navigate(['/']);
+        },
+        error => {
+          this.messageService.add({ severity: 'error', summary: 'Erro', detail: EMensage.ErroLogin });
+        }
       );
   }
 
 }
- 

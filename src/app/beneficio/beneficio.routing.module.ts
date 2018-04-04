@@ -1,3 +1,4 @@
+import { AuthGuard } from './../guards/auth.guard';
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
@@ -6,9 +7,9 @@ import { BeneficioFormComponent } from "./beneficio-form/beneficio-form.componen
 
 const benefioRoutes: Routes = [
     ///*
-    { path: 'beneficios', component: BeneficioComponent},
-    { path: 'beneficios/novo', component: BeneficioFormComponent},
-    { path: 'beneficios/:id/editar', component: BeneficioFormComponent}
+    { path: '', component: BeneficioComponent },
+    { path: 'novo', component: BeneficioFormComponent },
+    { path: ':id/editar', component: BeneficioFormComponent }
     //*/
 
     /*

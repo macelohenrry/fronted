@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Http, Response } from '@angular/http';
+
+import { MessageService } from 'primeng/components/common/messageservice';
 
 import 'rxjs/add/operator/map';
 
@@ -19,7 +21,8 @@ export class BeneficioFormComponent implements OnInit {
   constructor(
     private beneficioService: BeneficioService,
     private http: Http,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -29,19 +32,22 @@ export class BeneficioFormComponent implements OnInit {
     });*/
 
     this.formBeneficio = this.formBuilder.group({
-      descricao: [null]
+      descricao: [null, Validators.required]
     });
   }
 
   onSubmit() {
     this.beneficioService.onSubmit(this.formBeneficio)
-    .map((response: Response) => {
-      console.log(response.ok)
-    })
     .subscribe(
       res => res,
-      error => console.log(error));
+      error => {
+        this.messageService.add({ severity: 'error', summary: 'Erro', detail: error.json().errors[0].defaultMessage });
+        //console.log(error.json().errors[0].defaultMessage)
+      }
+    );
+  }
 
+  aplicaCssErro(campo) {
   }
 
 }

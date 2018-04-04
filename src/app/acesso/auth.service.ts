@@ -3,57 +3,57 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
- 
+
   url = "http://localhost:8080";
 
   constructor(
-    private http: Http, 
+    private http: Http,
     private formBuilder: FormBuilder
-    ) { 
-  }
+  ) { }
 
   private headers = new Headers({
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem("token")}` 
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
   });
 
-  onSubmit(formularioLogin: FormGroup): Observable<void> {
+  /*onSubmit(formularioLogin: FormGroup): Observable<void> {
+    return this.http.post(`${this.url}/login`, JSON.stringify(formularioLogin.value))
+      .map(res => {
+        console.log(res);
+        this.armazenarToken(res.text());
+      })
+      .catch(error => Observable.throw(error.message));
+  }*/
+
+  onSubmit(formularioLogin: FormGroup) {
     return this.http.post(`${this.url}/login`, JSON.stringify(formularioLogin.value))
       .map(res => {
         this.armazenarToken(res.text());
       })
-      .catch(error => Observable.throw(error.message));
   }
-
-  /*onSubmit(formularioLogin: FormGroup) {
-    return this.http.post(`${this.url}/login`, JSON.stringify(formularioLogin.value));
-  }*/
 
   private armazenarToken(token: string) {
     localStorage.setItem("token", token);
   }
 
-  limparAccessToken(){
+  limparAccessToken() {
     localStorage.removeItem("token");
   }
 
   isTokenValido() {
     const token = localStorage.getItem("token");
-    console.log(token);
     return token;
   }
 
   logout() {
-    return this.http.post(`${this.url}/logout`, {headers: this.headers})
-      .map(res => {
-        this.limparAccessToken();
-      })
-      .catch(error => Observable.throw(error.message));
+    this.limparAccessToken();
   }
+
+}
 
   /*
   https://chariotsolutions.com/blog/post/angular-2-spring-boot-jwt-cors_part1/
@@ -73,4 +73,3 @@ export class AuthService {
   https://www.concretepage.com/angular-2/angular-2-http-post-example
   */
 
-}

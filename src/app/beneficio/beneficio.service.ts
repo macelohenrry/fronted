@@ -17,23 +17,22 @@ export class BeneficioService {
 
   private headers = new Headers({
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem("token")}` 
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
   });
 
-  constructor(private http: Http, private formBuilder: FormBuilder) { 
+  constructor(private http: Http, private formBuilder: FormBuilder) {
 
   }
 
   onSubmit(formBeneficio: FormGroup) {
-    return this.http.post(`${this.url}/beneficios`, JSON.stringify(formBeneficio.value), {headers: this.headers});
-      
+    return this.http.post(`${this.url}/beneficios`, JSON.stringify(formBeneficio.value), { headers: this.headers })
   }
 
 
   getBeneficios() {
-    return this.http.get(`${this.url}/beneficios`, {headers: this.headers})
+    return this.http.get(`${this.url}/beneficios`, { headers: this.headers })
       .map((res: Response) => res.json())
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
 }
