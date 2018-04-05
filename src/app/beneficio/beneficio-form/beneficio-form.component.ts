@@ -1,3 +1,4 @@
+import { EMensage } from './../../model/model';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Http, Response } from '@angular/http';
@@ -47,7 +48,12 @@ export class BeneficioFormComponent implements OnInit {
     );
   }
 
-  aplicaCssErro(campo) {
+  verificaValidTouched(campo) {
+    return !this.formBeneficio.get(campo).valid;
+  }
+
+  msgErro() {
+    return EMensage.ErroLogin;
   }
 
 }

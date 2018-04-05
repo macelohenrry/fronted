@@ -8,7 +8,9 @@ import { HttpModule } from '@angular/http';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { ButtonModule } from 'primeng/components/button/button';
 import { BeneficioRoutingModule } from './beneficio.routing.module';
+import { MessageModule } from 'primeng/components/message/message';
 
+import { MensagemErroComponent } from './../shered/mensagem-erro/mensagem-erro.component';
 import { BeneficioComponent } from './beneficio.component';
 import { BeneficioFormComponent } from './beneficio-form/beneficio-form.component';
 
@@ -19,6 +21,7 @@ import { BeneficioService } from './beneficio.service';
     CommonModule,
     DataTableModule,
     InputTextModule,
+    MessageModule,
     ButtonModule,
     HttpModule,
     ReactiveFormsModule,
@@ -29,7 +32,8 @@ import { BeneficioService } from './beneficio.service';
   ],
   declarations: [
     BeneficioComponent,
-    BeneficioFormComponent
+    BeneficioFormComponent,
+    MensagemErroComponent
   ],
   providers: [
     BeneficioService

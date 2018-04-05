@@ -5,8 +5,9 @@
 
     <div class="row">
       <div class="input-field col s12 m12 l6" >
-        <input required id="descricao" type="text" pInputText formControlName="descricao" >
-        <label for="descricao">Descrição</label>
+        <input required id="descricao" type="text" placeholder="Descrição" pInputText formControlName="descricao" >
+        <app-mensagem-erro [mostrarErro]="verificaValidTouched('descricao')" [msgErro]="msgErro()">          
+        </app-mensagem-erro>
       </div>
     </div>
 
