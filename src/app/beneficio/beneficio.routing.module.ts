@@ -9,7 +9,7 @@ const benefioRoutes: Routes = [
     ///*
     { path: '', component: BeneficioComponent },
     { path: 'novo', component: BeneficioFormComponent },
-    { path: ':id/editar', component: BeneficioFormComponent }
+    { path: ':id', component: BeneficioFormComponent }
     //*/
 
     /*
