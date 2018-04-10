@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { EMensage, Beneficio } from './../../model/model';
+import { IFormCanDeactivate } from './../../guards/iform-candeactivate';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { ConfirmationService } from 'primeng/api';
 
 import 'rxjs/add/operator/map';
 import { Subscription } from 'rxjs/Subscription';
-
+import { EMensage, Beneficio } from './../../model/model';
 import { BeneficioService } from './../beneficio.service';
 
 
@@ -16,7 +17,7 @@ import { BeneficioService } from './../beneficio.service';
   templateUrl: './beneficio-form.component.html',
   styleUrls: ['./beneficio-form.component.css']
 })
-export class BeneficioFormComponent implements OnInit {
+export class BeneficioFormComponent implements OnInit, IFormCanDeactivate {
 
   formBeneficio: FormGroup;
   private inscricao: Subscription;
@@ -26,6 +27,7 @@ export class BeneficioFormComponent implements OnInit {
     private beneficioService: BeneficioService,
     private formBuilder: FormBuilder,
     private messageService: MessageService,
+    private confirmationService: ConfirmationService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) { }
@@ -39,7 +41,8 @@ export class BeneficioFormComponent implements OnInit {
     this.formBeneficio = this.formBuilder.group({
       id: [null],
       descricao: [null, Validators.required],
-      data:[null]
+      data:[null],
+      status: true
     });
 
     this.inscricao = this.activatedRoute.params.subscribe((params: any) => {
@@ -98,9 +101,22 @@ export class BeneficioFormComponent implements OnInit {
     this.formBeneficio.patchValue({
       id: beneficio.id,
       descricao: beneficio.descricao,
-      data: beneficio.data
+      data: beneficio.data,
+      status: beneficio.status
     });
-      
+  }
+
+  podeDesativar() {
+    this.confirmationService.confirm({
+      header: 'Confimação',
+      message: EMensage.MsgInfoAlterada,
+      accept: () => {
+        return true;
+      },
+      reject: () => {
+        return false;
+      }
+    });
   }
 
 }

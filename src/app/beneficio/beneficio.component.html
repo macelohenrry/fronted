@@ -9,12 +9,12 @@
     <p-column field="descricao" header="Descrição"></p-column>
     <p-column field="data" header="Data">
       <ng-template let-col let-beneficios="rowData" let-ri="rowIndex" pTemplate="body">
-        {{ [beneficios.data] | date:"dd/MM/yyyy" }}
+        {{ [beneficios.data] }}
       </ng-template>
     </p-column>
     <p-column field="status" header="Status">
-        <ng-template let-col let-beneficios="rowData" let-ri="rowIndex" pTemplate="body">
-          {{ [beneficios.status] ? "Ativo" : "Inativo" }}
+        <ng-template let-col let-beneficio="rowData" let-ri="rowIndex" pTemplate="body">
+          {{ [beneficio.status ? 'Ativo' : 'Inativo'] }}
         </ng-template>
     </p-column>
     <p-column>

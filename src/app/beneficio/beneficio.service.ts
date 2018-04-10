@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
+
 import { Beneficio } from './../model/model';
 
 import { Observable } from 'rxjs/Observable';
@@ -25,7 +26,9 @@ export class BeneficioService {
     private formBuilder: FormBuilder) { }
 
   onSubmit(formBeneficio: FormGroup) {
-    return this.http.post(`${this.url}/beneficios`, JSON.stringify(formBeneficio.value), { headers: this.headers })
+    if(formBeneficio.get("id").value === null)
+      return this.salvar(formBeneficio);
+    return this.atualizar(formBeneficio)
   }
 
   getBeneficios() {
@@ -39,6 +42,14 @@ export class BeneficioService {
       .map((res: Response) => res)
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }*/
+
+  salvar(formBeneficio: FormGroup) {
+    return this.http.post(`${this.url}/beneficios`, JSON.stringify(formBeneficio.value), { headers: this.headers })
+  }
+
+  atualizar(formBeneficio: FormGroup) {
+    return this.http.put(`${this.url}/beneficios/${formBeneficio.get("id").value}`, JSON.stringify(formBeneficio.value), { headers: this.headers })
+  }
 
   getBeneficio(id: number): Observable<Beneficio> {
     return this.http.get(`${this.url}/beneficios/${id}`, { headers: this.headers })

@@ -4,12 +4,19 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { BeneficioComponent } from '../beneficio/beneficio.component';
 import { BeneficioFormComponent } from "./beneficio-form/beneficio-form.component";
+import { BeneficioDeactivateGuard } from '../guards/beneficio-deactivate.guard';
 
 const benefioRoutes: Routes = [
     ///*
     { path: '', component: BeneficioComponent },
-    { path: 'novo', component: BeneficioFormComponent },
-    { path: ':id', component: BeneficioFormComponent }
+    { 
+        path: 'novo', component: BeneficioFormComponent,
+        canDeactivate: [BeneficioDeactivateGuard]
+     },
+    { 
+        path: ':id', component: BeneficioFormComponent,
+        canDeactivate: [BeneficioDeactivateGuard]
+     }
     //*/
 
     /*
