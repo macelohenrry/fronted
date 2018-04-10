@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Http, Response } from '@angular/http';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import { EMensage } from './../../model/model';
+import { EMensage, Beneficio } from './../../model/model';
 import { MessageService } from 'primeng/components/common/messageservice';
 
 import 'rxjs/add/operator/map';
+import { Subscription } from 'rxjs/Subscription';
 
 import { BeneficioService } from './../beneficio.service';
 
@@ -18,12 +19,15 @@ import { BeneficioService } from './../beneficio.service';
 export class BeneficioFormComponent implements OnInit {
 
   formBeneficio: FormGroup;
+  private inscricao: Subscription;
+  private beneficio: Beneficio;
 
   constructor(
     private beneficioService: BeneficioService,
-    private http: Http,
     private formBuilder: FormBuilder,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -33,18 +37,31 @@ export class BeneficioFormComponent implements OnInit {
     });*/
 
     this.formBeneficio = this.formBuilder.group({
-      descricao: [null, Validators.required]
+      id: [null],
+      descricao: [null, Validators.required],
+      data:[null]
     });
+
+    this.inscricao = this.activatedRoute.params.subscribe((params: any) => {
+      params['id'] != undefined ? this.getBeneficio(params['id']): "";
+    });
+  }
+
+  ngOnDestroy() {
+    this.inscricao.unsubscribe();
   }
 
   onSubmit() {
     if(this.formBeneficio.valid) {
       this.beneficioService.onSubmit(this.formBeneficio)
       .subscribe(
-        res => res,
+        res => {
+          this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: EMensage.MsgSucessoBeneficio});
+          this.formBeneficio.reset();
+          this.router.navigate(['/beneficios']);
+        },
         error => {
           this.messageService.add({ severity: 'error', summary: 'Erro', detail: error.json().errors[0].defaultMessage });
-          //console.log(error.json().errors[0].defaultMessage)
         }
       );
     } else {
@@ -68,6 +85,22 @@ export class BeneficioFormComponent implements OnInit {
 
   msgErro() {
     return EMensage.ErroCampoObrigatorio;
+  }
+
+  getBeneficio(id: number) {
+    this.beneficioService.getBeneficio(id)
+      .subscribe(beneficio =>  {
+        this.preencherEditar(beneficio);
+      });
+  }
+
+  preencherEditar(beneficio) {
+    this.formBeneficio.patchValue({
+      id: beneficio.id,
+      descricao: beneficio.descricao,
+      data: beneficio.data
+    });
+      
   }
 
 }

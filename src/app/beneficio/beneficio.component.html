@@ -7,6 +7,11 @@
     <p-header>Lista dos Benefícios</p-header>
     <p-column field="id" header="Posição"></p-column>
     <p-column field="descricao" header="Descrição"></p-column>
+    <p-column field="data" header="Data">
+      <ng-template let-col let-beneficios="rowData" let-ri="rowIndex" pTemplate="body">
+        {{ [beneficios.data] | date:"dd/MM/yyyy" }}
+      </ng-template>
+    </p-column>
     <p-column field="status" header="Status">
         <ng-template let-col let-beneficios="rowData" let-ri="rowIndex" pTemplate="body">
           {{ [beneficios.status] ? "Ativo" : "Inativo" }}
@@ -14,8 +19,8 @@
     </p-column>
     <p-column>
       <ng-template let-ben="rowData" pTemplate="body">
-        <a [routerLink]="['/beneficios', ben.id]" [quer] class="btn-floating waves-effect waves-light red" 
-          type="submit" name="action" ><i class="material-icons right">create</i>
+        <a [routerLink]="['/beneficios', ben.id]" class="btn-floating waves-effect waves-light red">
+          <i class="material-icons right">create</i>
         </a>
       </ng-template>
     </p-column>
