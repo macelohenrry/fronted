@@ -1,21 +1,31 @@
 <div class="row">
-  <div class="col s3">
+  <div class="col s12 offset-s1 m4 offset-m4">
     <div class="card-panel hoverable">
-      <h5>Acesso</h5>
+      <h4>SMPROS</h4>
+      <div class="section">
+        <h5 class="left-align">Login</h5>
+        <p>
+          <span class="blue-text text-darken-2">Use seus dados para logar</span>
+        </p>
+      </div>
       <form [formGroup]="formularioLogin" (ngSubmit)="onSubmit()">
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="username" type="text" pInputText formControlName="username" />
-            <label for="username">Usuário</label>
-          </div>
+        <div class="input-field">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="username" type="text" pInputText formControlName="username" />
+          <label for="username">Usuário</label>
         </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="password" type="password" pInputText formControlName="password"/>
-            <label for="password">Senha</label>
-          </div>
+        <div class="input-field">
+          <i class="material-icons prefix">vpn_key</i>
+          <input id="password" type="password" pInputText formControlName="password" />
+          <label for="password">Senha</label>
         </div>
-        <p-button type="submit" icon="fa fa-fw fa-check" label="Acessar"></p-button>
+
+        <div class="section right-align">
+          <a class="waves-effect waves-light blue-text text-darken-2">Esqueci minha senha</a>
+        </div>
+        <div class="section right-align">
+          <p-button type="submit" icon="fa fa-fw fa-check" label="Acessar"></p-button>
+        </div>
       </form>
     </div>
   </div>
