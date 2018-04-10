@@ -1,14 +1,22 @@
 <div class="col s12 m12 l9">
-  <p-dataTable [value]="beneficios" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+    <div>
+        <input #gb type="text" pInputText placeholder="Melhore sua busca">
+    </div>
+
+  <p-dataTable [value]="beneficios" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb">
     <p-header>Lista dos Benefícios</p-header>
-    <p-column field="id" header="Id"></p-column>
-    <p-column field="descricao" header="Descricao"></p-column>
-    <p-column field="status" header="Status"></p-column>
+    <p-column field="id" header="Posição"></p-column>
+    <p-column field="descricao" header="Descrição"></p-column>
+    <p-column field="status" header="Status">
+        <ng-template let-col let-beneficios="rowData" let-ri="rowIndex" pTemplate="body">
+          {{ [beneficios.status] ? "Ativo" : "Inativo" }}
+        </ng-template>
+    </p-column>
     <p-column>
-      <ng-template let-car="rowData" pTemplate="body">
-        <button class="btn-floating waves-effect waves-light red" type="submit" name="action">
-          <i class="material-icons right">create</i>
-        </button>
+      <ng-template let-ben="rowData" pTemplate="body">
+        <a [routerLink]="['/beneficios', ben.id]" [quer] class="btn-floating waves-effect waves-light red" 
+          type="submit" name="action" ><i class="material-icons right">create</i>
+        </a>
       </ng-template>
     </p-column>
   </p-dataTable>
