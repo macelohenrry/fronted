@@ -4,7 +4,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { IFormCanDeactivate } from './../../guards/iform-candeactivate';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { ConfirmationService } from 'primeng/api';
 
 import 'rxjs/add/operator/map';
 import { Subscription } from 'rxjs/Subscription';
@@ -27,7 +26,6 @@ export class BeneficioFormComponent implements OnInit, IFormCanDeactivate {
     private beneficioService: BeneficioService,
     private formBuilder: FormBuilder,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) { }
@@ -41,12 +39,12 @@ export class BeneficioFormComponent implements OnInit, IFormCanDeactivate {
     this.formBeneficio = this.formBuilder.group({
       id: [null],
       descricao: [null, Validators.required],
-      data:[null],
+      data: [null],
       status: true
     });
 
     this.inscricao = this.activatedRoute.params.subscribe((params: any) => {
-      params['id'] != undefined ? this.getBeneficio(params['id']): "";
+      params['id'] != undefined ? this.getBeneficio(params['id']) : "";
     });
   }
 
@@ -55,28 +53,28 @@ export class BeneficioFormComponent implements OnInit, IFormCanDeactivate {
   }
 
   onSubmit() {
-    if(this.formBeneficio.valid) {
+    if (this.formBeneficio.valid) {
       this.beneficioService.onSubmit(this.formBeneficio)
-      .subscribe(
-        res => {
-          this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: EMensage.MsgSucessoBeneficio});
-          this.formBeneficio.reset();
-          this.router.navigate(['/beneficios']);
-        },
-        error => {
-          this.messageService.add({ severity: 'error', summary: 'Erro', detail: error.json().errors[0].defaultMessage });
-        }
-      );
+        .subscribe(
+          res => {
+            this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: EMensage.MsgSucessoBeneficio });
+            this.formBeneficio.reset();
+            this.router.navigate(['/beneficios']);
+          },
+          error => {
+            this.messageService.add({ severity: 'error', summary: 'Erro', detail: error.json().errors[0].defaultMessage });
+          }
+        );
     } else {
       this.verificaValidacoesForm(this.formBeneficio);
     }
   }
-  
+
   verificaValidacoesForm(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(campo => {
       const controle = formGroup.get(campo)
       controle.markAsTouched();
-      if(controle instanceof FormGroup) {
+      if (controle instanceof FormGroup) {
         this.verificaValidacoesForm(controle);
       }
     });
@@ -92,7 +90,7 @@ export class BeneficioFormComponent implements OnInit, IFormCanDeactivate {
 
   getBeneficio(id: number) {
     this.beneficioService.getBeneficio(id)
-      .subscribe(beneficio =>  {
+      .subscribe(beneficio => {
         this.preencherEditar(beneficio);
       });
   }
@@ -107,16 +105,19 @@ export class BeneficioFormComponent implements OnInit, IFormCanDeactivate {
   }
 
   podeDesativar() {
-    this.confirmationService.confirm({
+    /*this.confirmationService.confirm({
       header: 'Confimação',
       message: EMensage.MsgInfoAlterada,
       accept: () => {
-        return true;
+
       },
       reject: () => {
-        return false;
+
       }
-    });
+    });*/
+    if(this.formBeneficio.touched)
+      return confirm(EMensage.MsgInfoSairRota);
+    return true;
   }
 
 }

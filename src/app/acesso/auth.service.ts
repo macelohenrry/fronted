@@ -2,6 +2,8 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
+import { JwtHelper } from 'angular2-jwt';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -12,7 +14,8 @@ export class AuthService {
 
   constructor(
     private http: Http,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private jwtHelpr: JwtHelper
   ) { }
 
   private headers = new Headers({
@@ -71,5 +74,7 @@ export class AuthService {
 
   https://imasters.com.br/desenvolvimento/angular-2-enviando-dados-com-http-post/?trace=1519021197&source=single
   https://www.concretepage.com/angular-2/angular-2-http-post-example
+
+  https://www.uno-de-piera.com/jwt-angular-2-y-laravel-5/
   */
 
