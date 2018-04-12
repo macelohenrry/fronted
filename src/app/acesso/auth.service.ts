@@ -2,8 +2,6 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
-import { JwtHelper } from 'angular2-jwt';
-
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -15,7 +13,6 @@ export class AuthService {
   constructor(
     private http: Http,
     private formBuilder: FormBuilder,
-    private jwtHelpr: JwtHelper
   ) { }
 
   private headers = new Headers({

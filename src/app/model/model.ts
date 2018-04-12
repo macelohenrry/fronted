@@ -19,3 +19,4 @@ export enum EMensage {
     MsgSucessoBeneficio = "As Informações foram salvas com sucesso.",
     MsgInfoSairRota = "Tem certeza que deseja sair dessa página? Quaisquer modificações serão perdidas."
 }
+
