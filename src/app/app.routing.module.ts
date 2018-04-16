@@ -8,6 +8,10 @@ import { InicioComponent } from './inicio/inicio.component';
 
 const appRoutes: Routes = [
     //Usando loadChildren, não pode deixar nenhum import do BeneficioModule em outro arquivo
+    { path: 'solicitantes',
+        loadChildren: 'app/solicitantes/solicitantes.module#SolicitantesModule',
+        canActivate: [AuthGuard]
+    },
     { path: 'beneficios', 
         loadChildren: 'app/beneficio/beneficio.module#BeneficioModule',
         canActivate: [AuthGuard] 

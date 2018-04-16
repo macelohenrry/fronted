@@ -32,6 +32,7 @@ import { ConfirmationService } from 'primeng/api';
     ConfirmDialogModule,
     HttpModule,
     ReactiveFormsModule,
+    
     BeneficioRoutingModule
   ],
   exports: [

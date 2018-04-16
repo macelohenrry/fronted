@@ -1,11 +1,11 @@
 <div class="col s12 m12 l3">
     <p-accordion>
-        <!--<p-accordionTab header="Socilitante">
+        <p-accordionTab header="Solicitante">
             <div class="collection">
-                <a routerLink="/beneficios/novo" class="collection-item">Cadastrar</a>
-                <a routerLink="/beneficios" class="collection-item">Pesquisar</a>
+                <a routerLink="/solicitantes/novo" class="collection-item">Nava Solicitação</a>
+                <a routerLink="/solicitantes" class="collection-item">Pesquisar</a>
             </div>
-        </p-accordionTab>-->
+        </p-accordionTab>
         <p-accordionTab header="Benefício">
             <div class="collection">
                 <a routerLink="/beneficios/novo" class="collection-item">Cadastrar</a>
@@ -13,7 +13,11 @@
             </div>
         </p-accordionTab>
         <p-accordionTab header="Configuração">
-            <a class="btn-floating btn-medium waves-effect waves-light grey darken-1" (click)="logout()" ><i class="material-icons"><i class="material-icons">power_settings_new</i></i></a>
+            <a class="btn-floating btn-medium waves-effect waves-light grey darken-1" (click)="logout()">
+                <i class="material-icons">
+                    <i class="material-icons">power_settings_new</i>
+                </i>
+            </a>
         </p-accordionTab>
     </p-accordion>
 </div>
