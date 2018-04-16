@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
+    this.authService.limparAccessToken();
     this.router.navigate(['/acesso']);
   }
 }

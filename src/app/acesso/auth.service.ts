@@ -50,9 +50,9 @@ export class AuthService {
   }
 
   logout() {
-    this.limparAccessToken();
+    return this.http.get(`${this.url}/usuarios/logout`, { headers: this.headers })
+      .map(res => res);
   }
-
 }
 
   /*
@@ -73,5 +73,8 @@ export class AuthService {
   https://www.concretepage.com/angular-2/angular-2-http-post-example
 
   https://www.uno-de-piera.com/jwt-angular-2-y-laravel-5/
+
+  Logout
+  https://hellokoding.com/scalable-authentication-single-sign-on-out-sso-example-with-json-web-token-jwt-cookie-redis-java-spring-boot-freemarker/
   */
 
