@@ -1,3 +1,69 @@
-<p>
-  solicitante-form works!
-</p>
+<div class="col s12 m12 l9">
+  <h5>Nova Solicitação</h5>
+
+  <p-tabView>
+    <p-tabPanel header="Identificação">
+      <div class="row">
+        <div class="col s12 m12 l4">
+          <input type="text" pInputText placeholder="Nome" required />
+        </div>
+        <div class="col s12 m8 l3">
+          <input type="text" pInputText placeholder="Apelido" required />
+        </div>
+        <div class="col s12 m8 l3">
+          <input type="email" pInputText placeholder="Email" required />
+        </div>
+        <div class="col s12 m8 l2">
+          <p-inputMask mask="(99) 99999-9999" placeholder="Contato"></p-inputMask>
+        </div>
+        <div class="col s12 m8 l2">
+          <p-inputMask mask="999.999.999-99" placeholder="CPF"></p-inputMask>
+        </div>
+        <div class="col s5 m8 l2">
+          <input type="text" pInputText pKeyFilter="num" placeholder="RG" required>
+        </div>
+        <div class="col s5 m8 l1">
+          <input type="text" pInputText placeholder="Org.Exp." required />
+        </div>
+        <div class="col s12 m8 l2">
+          <p-inputMask mask="99/99/9999" placeholder="Nascimento" required></p-inputMask>
+        </div>
+        <div class="col s5 m8 l3">
+          <input type="text" pInputText pKeyFilter="num" placeholder="NIS">
+        </div>
+        <div class="col s12 m12 l3">
+          <p-dropdown [options]="selectCivil" placeholder="Estado Civil" optionLabel="nome" [style]="{'width':'200px'}"></p-dropdown>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Dados Econômicos">
+      Content 2
+    </p-tabPanel>
+  </p-tabView>
+
+
+
+  <div class="col s12 m12 l4">
+
+  </div>
+  <div class="col s12 m12 l4">
+
+  </div>
+  <div class="col s12 m12 l4">
+
+  </div>
+
+  <div class="col s12 m12 l4">
+
+  </div>
+  <div class="col s12 m12 l4">
+
+  </div>
+  <div class="col s12 m12 l4">
+
+  </div>
+  <div class="col s12 m12 l4">
+
+  </div>
+
+</div>

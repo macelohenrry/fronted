@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SelectItem } from 'primeng/api';
+import { EstadoCivil, Civil } from './../../model/solicitante';
+
 @Component({
   selector: 'app-solicitante-form',
   templateUrl: './solicitante-form.component.html',
@@ -7,7 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SolicitanteFormComponent implements OnInit {
 
-  constructor() { }
+  civil: Civil;
+  selectCivil: Civil[];
+
+  constructor() {
+    this.selectCivil = [
+      {codigo: 'CASADO', nome: 'Casado(a)'},
+      {codigo: 'SOLTEIRO', nome: 'Solteiro(a)'}
+    ]
+   }
 
   ngOnInit() {
   }

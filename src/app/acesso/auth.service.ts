@@ -49,8 +49,8 @@ export class AuthService {
     return token;
   }
 
-  logout() {
-    return this.http.get(`${this.url}/usuarios/logout`, { headers: this.headers })
+  sair() {
+    return this.http.get(`${this.url}/usuarios/sair`, { headers: this.headers })
       .map(res => res);
   }
 }

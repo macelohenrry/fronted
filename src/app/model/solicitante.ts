@@ -12,3 +12,8 @@ export enum EstadoCivil {
     DIVORCIADO = "Divorciado(a)", VIUVO = "Viúvo(a)", SEPARADO = "Separado(a)", 
 	UNIAOESTAVEL = "União estável", RELACAOMARITAL = "Relação Marital"
 }
+
+export class Civil {
+    codigo: string;
+    nome: string
+}
