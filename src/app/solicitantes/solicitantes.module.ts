@@ -8,6 +8,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
+import { MaterializeModule } from 'angular2-materialize';
 
 import { SolicitantesComponent } from './solicitantes.component';
 import { SolicitanteFormComponent } from './solicitante-form/solicitante-form.component';
@@ -25,6 +26,7 @@ import { SolicitanteDetalheComponent } from './solicitante-detalhe/solicitante-d
     InputMaskModule,
     CalendarModule,
     DropdownModule,
+    MaterializeModule,
 
     SolicitantesRoutingModule
   ],

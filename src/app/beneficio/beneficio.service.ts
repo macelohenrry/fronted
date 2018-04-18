@@ -44,7 +44,7 @@ export class BeneficioService {
   }*/
 
   salvar(formBeneficio: FormGroup) {
-    return this.http.post(`${this.url}/beneficios`, JSON.stringify(formBeneficio.value), { headers: this.headers })
+    return this.http.post(`${this.url}/beneficios`, JSON.stringify(formBeneficio.value), { headers: this.headers });
   }
 
   atualizar(formBeneficio: FormGroup) {

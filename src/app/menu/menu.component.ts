@@ -20,8 +20,9 @@ export class MenuComponent implements OnInit {
   }
 
   logout() {
-    this.authService.sair()
-      .subscribe(res => res);
+    this.authService.limparAccessToken();
+    //this.authService.sair()
+      //.subscribe(res => res);
     this.router.navigate(['/acesso']);
   }
 }
