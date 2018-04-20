@@ -16,6 +16,10 @@ export enum EEstadoCivil {
 }
 
 export enum ETrabalho {
-    "Formal" = 1, "Informal" = 2
+    "Formal" = 1, "Informal" = 2, "Desempregado" = 3
 }
+export enum ECasa {
+    "Prória" = 1, "Alugada" = 2, "Cedida" = 3, "Invasão" = 4, "Outros" = 5 
+}
+
 

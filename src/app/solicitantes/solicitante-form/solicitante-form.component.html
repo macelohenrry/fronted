@@ -124,18 +124,38 @@
       <p-tabPanel header="Dados Socioeconômicos">
         <div class="row" formGroupName="dadoSocioEconomico">
           <div class="input-field col s5 m8 l2">
-              <span>Estuda?</span>
-              <p-checkbox binary="true" formControlName="estuda" id="estuda" ></p-checkbox>
+            <span>Estuda?</span>
+            <p-checkbox binary="true" formControlName="estuda" id="estuda"></p-checkbox>
           </div>
-
           <div class="input-field col s5 m8 l4">
             <input type="text" pInputText id="escola" formControlName="escola">
             <label for="escola">Escola</label>
           </div>
-
           <div class="input-field col s5 m8 l2">
             <input type="text" pInputText id="serie" formControlName="serie">
             <label for="serie">Série</label>
+          </div>
+          <div class="input-field col s3">
+            <select materialize="material_select" [materializeSelectOptions]="selectOptions" formControlName="trabalho">
+              <option value="" disabled selected>Trabalho</option>
+              <option *ngFor="let option of selectTrabalho" [value]="option.id">{{option.descricao}}</option>
+            </select>
+            <label>Selecione a forma de trabalho</label>
+          </div>
+          <div class="input-field col s5 m8 l3">
+            <input type="text" pInputText id="funcao" formControlName="funcao">
+            <label for="funcao">Função</label>
+          </div>
+          <div class="input-field col s5 m8 l2">
+            <input type="text" pInputText id="renda" formControlName="renda">
+            <label for="renda">Renda</label>
+          </div>
+          <div class="input-field col s3">
+            <select materialize="material_select" [materializeSelectOptions]="selectOptions" formControlName="casa">
+              <option value="" disabled selected>Casa</option>
+              <option *ngFor="let option of selectCasa" [value]="option.id">{{option.descricao}}</option>
+            </select>
+            <label>Selecione o tipo de Casa</label>
           </div>
 
 

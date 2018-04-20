@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { EEstadoCivil, ETrabalho } from './../model/solicitante';
+import { EEstadoCivil, ETrabalho, ECasa } from './../model/solicitante';
 
 @Injectable()
 export class SolicitantesService {
@@ -39,11 +39,22 @@ export class SolicitantesService {
   getEnumTrablho() {
     let selectTrabalho: any[];
     selectTrabalho = [
-      {"id": ETrabalho['Formal'], "descricao": ETrabalho[1]},
-      {"id": ETrabalho['Informal'], "descricao": ETrabalho[2]}
+      {"id": ETrabalho['Formal'], "descricao": ETrabalho['1']},
+      {"id": ETrabalho['Informal'], "descricao": ETrabalho['2']},
+      {"id": ETrabalho['Desempregado'], "descricao": ETrabalho['3']}
     ]
     return selectTrabalho;
   }
-
+  
+  getEnumCasa() {
+    let selectCasa: any[];
+    selectCasa = [
+      {"id": ECasa['Prória'], "descricao": ECasa['1']},
+      {"id": ECasa['Alugada'], "descricao": ECasa['2']},
+      {"id": ECasa['Cedida'], "descricao": ECasa['3']},
+      {"id": ECasa['Invasão'], "descricao": ECasa['4']},
+      {"id": ECasa['Outros'], "descricao": ECasa['5']}
+    ]
+    return selectCasa;
+  }
 }
-.

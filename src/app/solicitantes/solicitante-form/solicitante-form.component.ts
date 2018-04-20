@@ -4,7 +4,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { EstadoCivil, EEstadoCivil } from './../../model/solicitante';
+import { EEstadoCivil } from './../../model/solicitante';
 
 @Component({
   selector: 'app-solicitante-form',
@@ -17,6 +17,7 @@ export class SolicitanteFormComponent implements OnInit {
   solicitanteForm: FormGroup;
   selectEstadoCivil: any[];
   selectTrabalho: any[];
+  selectCasa: any[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,6 +25,7 @@ export class SolicitanteFormComponent implements OnInit {
     ) {
       this.selectEstadoCivil = solicitantesService.getEnumEstadoCilvel();
       this.selectTrabalho = solicitantesService.getEnumTrablho();
+      this.selectCasa = solicitantesService.getEnumCasa();
   }
     
   ngOnInit() {
@@ -73,7 +75,6 @@ export class SolicitanteFormComponent implements OnInit {
         trabalho: [null, Validators.required],
         funcao: [null],
         renda: [null],
-        desempregado: [false],
         casa: [null, Validators.required],
         valorAluguel: [null],
         outroTipoCasa: [null],
