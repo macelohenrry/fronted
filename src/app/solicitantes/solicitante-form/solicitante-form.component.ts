@@ -16,20 +16,14 @@ export class SolicitanteFormComponent implements OnInit {
   private inscricao: Subscription;
   solicitanteForm: FormGroup;
   selectEstadoCivil: any[];
+  selectTrabalho: any[];
 
   constructor(
     private formBuilder: FormBuilder,
     private solicitantesService: SolicitantesService
     ) {
-      this.selectEstadoCivil = [
-        {"id": EEstadoCivil['Solteiro(a)'], "descricao": EEstadoCivil['1']},
-        {"id": EEstadoCivil["Casado(a)"], "descricao": EEstadoCivil['2']},
-        {"id": EEstadoCivil["Divorciado(a)"], "descricao": EEstadoCivil['3']},
-        {"id": EEstadoCivil["Viúvo(a)"], "descricao": EEstadoCivil['4']},
-        {"id": EEstadoCivil["Separado(a)"], "descricao": EEstadoCivil['5']},
-        {"id": EEstadoCivil["União estável"], "descricao": EEstadoCivil['6']},
-        {"id": EEstadoCivil["Relação Marital"], "descricao": EEstadoCivil['7']}
-      ]
+      this.selectEstadoCivil = solicitantesService.getEnumEstadoCilvel();
+      this.selectTrabalho = solicitantesService.getEnumTrablho();
   }
     
   ngOnInit() {
@@ -44,7 +38,54 @@ export class SolicitanteFormComponent implements OnInit {
       orgaoExpedidor: [null, Validators.required],
       dataNascimento: [null, Validators.required],
       nis: [null, Validators.required],
-      estadoCivil: [null]
+      estadoCivil: [null], 
+      
+      certidaoNascimento: this.formBuilder.group({
+        id: [null],
+        numero: [null, Validators.required],
+        livro: [null, Validators.required],
+        folha: [null, Validators.required],
+        cartorio: [null, Validators.required]
+      }),
+
+      tituloEleitor: this.formBuilder.group( {
+        id: [null], 
+        numero: [null, Validators.required],
+        zona: [null, Validators.required],
+        sessao: [null, Validators.required],
+      }),
+
+      endereco: this.formBuilder.group({
+        id: [null],
+        cep: [null],
+        rua: [null, Validators.required],
+        bairro: [null],
+        complemento: [null],
+        numero: [null],
+        pontoReferencia: [null]
+      }),
+
+      dadoSocioEconomico: this.formBuilder.group({
+        id: [null],
+        estuda: [false],
+        escola: [null],
+        serie: [null],
+        trabalho: [null, Validators.required],
+        funcao: [null],
+        renda: [null],
+        desempregado: [false],
+        casa: [null, Validators.required],
+        valorAluguel: [null],
+        outroTipoCasa: [null],
+        aguaEncanada: [true],
+        esgotoSanitario: [true],
+        energiaEletrica: [true],
+        programaSocial: [false],
+        outroProgramSocial: [null],
+        valorProgramaSocial: [null],
+        previdenciaSocial: [null],
+        outroPrevidenciaSocial: [null]
+      })
     });
   }
 

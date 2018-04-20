@@ -8,7 +8,6 @@ export class Solicitante {
     orgaoExpedidor: string;
     dataNascimento: Date;
     nis: string;
-    estadoCivil: EstadoCivil;
 }
 
 export enum EEstadoCivil {
@@ -16,8 +15,7 @@ export enum EEstadoCivil {
     "União estável" = 6, "Relação Marital" = 7
 }
 
-
-export class EstadoCivil {
-    id: number;
-    descricao: string;
+export enum ETrabalho {
+    "Formal" = 1, "Informal" = 2
 }
+

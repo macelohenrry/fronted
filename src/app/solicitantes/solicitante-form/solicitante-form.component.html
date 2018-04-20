@@ -17,12 +17,10 @@
             <label for="email">Email</label>
           </div>
           <div class="input-field col s12 m8 l2">
-            <p-inputMask mask="(99) 99999-9999" id="contato" formControlName="contato"></p-inputMask>
-            <label for="contato">Contato</label>
+            <p-inputMask mask="(99) 99999-9999" id="contato" formControlName="contato" placeholder="Contato"></p-inputMask>
           </div>
           <div class="input-field col s12 m8 l2">
-            <p-inputMask mask="999.999.999-99" id="cpf" formControlName="cpf"></p-inputMask>
-            <label for="cpf">CPF</label>
+            <p-inputMask mask="999.999.999-99" id="cpf" formControlName="cpf" placeholder="CPF"></p-inputMask>
           </div>
           <div class="input-field col s5 m8 l2">
             <input type="text" pInputText pKeyFilter="num" id="rg" required formControlName="rg">
@@ -40,16 +38,115 @@
             <input type="text" pInputText pKeyFilter="num" id="nis" formControlName="nis">
             <label for="nis">NIS</label>
           </div>
-          <div class="input-field col s5">
+          <div class="input-field col s3">
             <select materialize="material_select" [materializeSelectOptions]="selectOptions" formControlName="estadoCivil">
               <option value="" disabled selected>Estado Civil</option>
               <option *ngFor="let option of selectEstadoCivil" [value]="option.id">{{option.descricao}}</option>
             </select>
             <label>Selecione</label>
           </div>
+        </div>
+
+        <p-panel header="Certidão de Nascimento">
+          <div class="row" formGroupName="certidaoNascimento">
+            <div class="input-field col s5 m8 l2">
+              <input type="text" pInputText id="numero" formControlName="numero">
+              <label for="numero">Número</label>
+            </div>
+            <div class="input-field col s5 m8 l2">
+              <input type="text" pInputText id="livro" formControlName="livro">
+              <label for="livro">Livro</label>
+            </div>
+            <div class="input-field col s5 m8 l2">
+              <input type="text" pInputText id="folha" formControlName="folha">
+              <label for="folha">Folha</label>
+            </div>
+            <div class="input-field col s5 m8 l4">
+              <input type="text" pInputText id="cartorio" formControlName="cartorio">
+              <label for="cartorio">Cartório</label>
+            </div>
+            <div class="input-field col s5 m8 l2">
+              <input type="text" pInputText id="folha" formControlName="folha">
+              <label for="folha">Folha</label>
+            </div>
+          </div>
+        </p-panel>
+        <br/>
+        <p-panel header="Título de Eleitor">
+          <div class="row" formGroupName="tituloEleitor">
+            <div class="input-field col s5 m8 l2">
+              <input type="text" pInputText pKeyFilter="num" id="numero" formControlName="numero">
+              <label for="numero">Número</label>
+            </div>
+            <div class="input-field col s5 m8 l2">
+              <input type="text" pInputText pKeyFilter="num" id="zona" formControlName="zona">
+              <label for="zona">Zona</label>
+            </div>
+            <div class="input-field col s5 m8 l2">
+              <input type="text" pInputText pKeyFilter="num" id="sessao" formControlName="sessao">
+              <label for="sessao">Sessão</label>
+            </div>
+
+          </div>
+        </p-panel>
+        <br/>
+        <p-panel header="Endereço">
+          <div class="row" formGroupName="endereco">
+            <div class="input-field col s12 m8 l2">
+              <p-inputMask mask="99999-999" id="cep" formControlName="cep" placeholder="CEP"></p-inputMask>
+            </div>
+            <div class="input-field col s5 m8 l5">
+              <input type="text" pInputText id="rua" formControlName="rua">
+              <label for="rua">Rua</label>
+            </div>
+            <div class="input-field col s5 m8 l3">
+              <input type="text" pInputText id="bairro" formControlName="bairro">
+              <label for="bairro">Bairro</label>
+            </div>
+            <div class="input-field col s5 m8 l2">
+              <input type="text" pInputText id="numero" formControlName="numero">
+              <label for="numero">Número</label>
+            </div>
+            <div class="input-field col s5 m8 l3">
+              <input type="text" pInputText id="complemento" formControlName="complemento">
+              <label for="complemento">Complemento</label>
+            </div>
+            <div class="input-field col s5 m8 l5">
+              <input type="text" pInputText id="pontoReferencia" formControlName="pontoReferencia">
+              <label for="pontoReferencia">Ponto Referência</label>
+            </div>
+
+
+          </div>
+        </p-panel>
+
+      </p-tabPanel>
+      <p-tabPanel header="Dados Socioeconômicos">
+        <div class="row" formGroupName="dadoSocioEconomico">
+          <div class="input-field col s5 m8 l2">
+              <span>Estuda?</span>
+              <p-checkbox binary="true" formControlName="estuda" id="estuda" ></p-checkbox>
+          </div>
+
+          <div class="input-field col s5 m8 l4">
+            <input type="text" pInputText id="escola" formControlName="escola">
+            <label for="escola">Escola</label>
+          </div>
+
+          <div class="input-field col s5 m8 l2">
+            <input type="text" pInputText id="serie" formControlName="serie">
+            <label for="serie">Série</label>
+          </div>
+
+
 
         </div>
       </p-tabPanel>
+
+      <p-tabPanel header="Dados Econômicos">
+        Content 2
+      </p-tabPanel>
+
       <p-tabPanel header="Dados Econômicos">
         Content 2
       </p-tabPanel>
