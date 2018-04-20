@@ -14,23 +14,22 @@ import { EstadoCivil, EEstadoCivil } from './../../model/solicitante';
 export class SolicitanteFormComponent implements OnInit {
   
   private inscricao: Subscription;
-  private eEstadoCivil: EEstadoCivil;
   solicitanteForm: FormGroup;
-  selectEstadoCivil: EstadoCivil[];
+  selectEstadoCivil: any[];
 
   constructor(
     private formBuilder: FormBuilder,
     private solicitantesService: SolicitantesService
     ) {
-    this.selectEstadoCivil = [
-      {id: 1, descricao: EEstadoCivil[1]},
-      {id: 2, descricao: EEstadoCivil[2]},
-      {id: 3, descricao: EEstadoCivil[3]},
-      {id: 4, descricao: EEstadoCivil[4]},
-      {id: 5, descricao: EEstadoCivil[5]},
-      {id: 6, descricao: EEstadoCivil[6]},
-      {id: 7, descricao: EEstadoCivil[7]}
-    ]
+      this.selectEstadoCivil = [
+        {"id": EEstadoCivil['Solteiro(a)'], "descricao": EEstadoCivil['1']},
+        {"id": EEstadoCivil["Casado(a)"], "descricao": EEstadoCivil['2']},
+        {"id": EEstadoCivil["Divorciado(a)"], "descricao": EEstadoCivil['3']},
+        {"id": EEstadoCivil["Viúvo(a)"], "descricao": EEstadoCivil['4']},
+        {"id": EEstadoCivil["Separado(a)"], "descricao": EEstadoCivil['5']},
+        {"id": EEstadoCivil["União estável"], "descricao": EEstadoCivil['6']},
+        {"id": EEstadoCivil["Relação Marital"], "descricao": EEstadoCivil['7']}
+      ]
   }
     
   ngOnInit() {
