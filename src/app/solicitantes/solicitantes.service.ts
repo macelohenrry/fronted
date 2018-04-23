@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { EEstadoCivil, ETrabalho, ECasa } from './../model/solicitante';
+import { EEstadoCivil, ETrabalho, ECasa, EPrevidencia } from './../model/solicitante';
 
 @Injectable()
 export class SolicitantesService {
@@ -45,7 +45,7 @@ export class SolicitantesService {
     ]
     return selectTrabalho;
   }
-  
+   
   getEnumCasa() {
     let selectCasa: any[];
     selectCasa = [
@@ -56,5 +56,17 @@ export class SolicitantesService {
       {"id": ECasa['Outros'], "descricao": ECasa['5']}
     ]
     return selectCasa;
+  }
+  getEnumPrevidencia() {
+    let selectPrevidencia: any[];
+    selectPrevidencia = [
+      {"id": EPrevidencia['Aposentado'], "descricao": EPrevidencia['1']},
+      {"id": EPrevidencia['Pensionista'], "descricao":EPrevidencia['2']},
+      {"id": EPrevidencia['PCO/LOAS'], "descricao": EPrevidencia['3']},
+      {"id": EPrevidencia['Auxílio Doença'], "descricao": EPrevidencia['4']},
+      {"id": EPrevidencia['Seguro Desenprego'], "descricao": EPrevidencia['5']},
+      {"id": EPrevidencia['Outros'], "descricao": EPrevidencia['6']}
+    ]
+    return selectPrevidencia;
   }
 }

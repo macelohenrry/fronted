@@ -76,5 +76,10 @@ export class AuthService {
 
   Logout
   https://hellokoding.com/scalable-authentication-single-sign-on-out-sso-example-with-json-web-token-jwt-cookie-redis-java-spring-boot-freemarker/
+
+
+  http://plnkr.co/edit/a0jfpicT23408K2eqyDC?p=preview
+  https://kimsereyblog.blogspot.com.br/2017/09/model-driven-form-with-angular.html
+  
   */
 

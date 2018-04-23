@@ -20,7 +20,7 @@
             <p-inputMask mask="(99) 99999-9999" id="contato" formControlName="contato" placeholder="Contato"></p-inputMask>
           </div>
           <div class="input-field col s12 m8 l2">
-            <p-inputMask mask="999.999.999-99" id="cpf" formControlName="cpf" placeholder="CPF"></p-inputMask>
+            <p-inputMask mask="999.999.999-99" formControlName="cpf" placeholder="CPF"></p-inputMask>
           </div>
           <div class="input-field col s5 m8 l2">
             <input type="text" pInputText pKeyFilter="num" id="rg" required formControlName="rg">
@@ -86,7 +86,6 @@
               <input type="text" pInputText pKeyFilter="num" id="sessao" formControlName="sessao">
               <label for="sessao">Sessão</label>
             </div>
-
           </div>
         </p-panel>
         <br/>
@@ -115,12 +114,10 @@
               <input type="text" pInputText id="pontoReferencia" formControlName="pontoReferencia">
               <label for="pontoReferencia">Ponto Referência</label>
             </div>
-
-
           </div>
         </p-panel>
-
       </p-tabPanel>
+
       <p-tabPanel header="Dados Socioeconômicos">
         <div class="row" formGroupName="dadoSocioEconomico">
           <div class="input-field col s5 m8 l2">
@@ -157,45 +154,147 @@
             </select>
             <label>Selecione o tipo de Casa</label>
           </div>
+          <div class="input-field col s5 m8 l3">
+            <input type="text" pInputText id="outroTipoCasa" formControlName="outroTipoCasa">
+            <label for="outroTipoCasa">Outro tipo de Casa</label>
+          </div>
+          <div class="row">
+            <div class="input-field col s5 m8 l2">
+              <span>Água encanada?</span>
+              <p-checkbox binary="true" formControlName="aguaEncanada" id="aguaEncanada"></p-checkbox>
+            </div>
+            <div class="input-field col s5 m8 l2">
+              <span>Esgoto Sanitário?</span>
+              <p-checkbox binary="true" formControlName="esgotoSanitario" id="esgotoSanitario"></p-checkbox>
+            </div>
+            <div class="input-field col s5 m8 l2">
+              <span>Energia Elétrica?</span>
+              <p-checkbox binary="true" formControlName="energiaEletrica" id="energiaEletrica"></p-checkbox>
+            </div>
+            <div class="input-field col s5 m8 l2">
+              <span>Outro Programa Social?</span>
+              <p-checkbox binary="true" formControlName="programaSocial" id="programaSocial"></p-checkbox>
+            </div>
+            <div class="input-field col s5 m8 l2">
+              <input type="text" pInputText id="outroProgramSocial" formControlName="outroProgramSocial">
+              <label for="outroProgramSocial">Especifique o Programa</label>
+            </div>
+            <div class="input-field col s5 m8 l2">
+              <input type="text" pInputText id="valorProgramaSocial" formControlName="valorProgramaSocial">
+              <label for="valorProgramaSocial">Valor </label>
+            </div>
+          </div>
+          <div class="input-field col s3">
+            <select materialize="material_select" [materializeSelectOptions]="selectOptions" formControlName="previdenciaSocial">
+              <option value="" disabled selected>Previdência Social</option>
+              <option *ngFor="let option of selectPrevidencia" [value]="option.id">{{option.descricao}}</option>
+            </select>
+            <label>Selecione Previdência Social</label>
+          </div>
+          <div class="input-field col s5 m8 l2">
+            <input type="text" pInputText id="outroPrevidenciaSocial" formControlName="outroPrevidenciaSocial">
+            <label for="outroPrevidenciaSocial">Especifique Outros </label>
+          </div>
+        </div>
+      </p-tabPanel>
 
 
+      <p-tabPanel header="Composição Falimiliar">
+        <div class="row" formArrayName="composicaoFamiliar" >
+
+            <p-inputMask mask="999.999.999-99" formControlName="cpf" placeholder="CPF"></p-inputMask>
+          
+          <!--<p-table [value]="composicaoFamiliar">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>CPF</th>
+                <th>Idade</th>
+                <th>Idade</th>
+                <th>Parentesto</th>
+                <th>Atividade</th>
+                <th>Renda R$</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-iten>
+              <tr [formGroupName]="iten">
+                <td>
+                  <div class="input-field col s12 m8 l2">
+                    <p-inputMask mask="999.999.999-99" formControlName="cpf" placeholder="CPF"></p-inputMask>
+                  </div>
+                </td>
+                <td>
+                  <div class="input-field col s12 m12 l4">
+                    <input type="text" pInputText id="nomecf" required formControlName="nome" />
+                    <label for="nomecf">Nome</label>
+                  </div>
+                </td>
+                <td>
+                  <div class="input-field col s12 m4 l1">
+                    <input type="text" pInputText id="idade" pKeyFilter="num" required formControlName="idade" />
+                    <label for="idade">Idade</label>
+                  </div>
+                </td>
+                <td>
+                  <div class="input-field col s12 m4 l3">
+                    <input type="text" pInputText id="parentesco" required formControlName="parentesco" />
+                    <label for="parentesco">Parentesco</label>
+                  </div>
+                </td>
+                <td>
+                  <div class="input-field col s12 m4 l3">
+                    <input type="text" pInputText id="pareatividadentesco" required formControlName="atividade" />
+                    <label for="atividade">Atividade</label>
+                  </div>
+                </td>
+                <td>
+                  <div class="input-field col s12 m4 l2">
+                    <input type="text" pInputText id="rendacf" required formControlName="rendacf" />
+                    <label for="rendacf">Renda</label>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>-->
+        
+              
 
         </div>
       </p-tabPanel>
 
-      <p-tabPanel header="Dados Econômicos">
-        Content 2
-      </p-tabPanel>
 
+      <!--
       <p-tabPanel header="Dados Econômicos">
-        Content 2
+        <div class="row" formArrayName="composicaoFamiliar">
+          <div class="input-field col s12 m8 l2">
+            <p-inputMask mask="999.999.999-99" formControlName="cpf" placeholder="CPF"></p-inputMask>
+          </div>
+          <div class="input-field col s12 m12 l4">
+            <input type="text" pInputText id="nomecf" required formControlName="nome" />
+            <label for="nomecf">Nome</label>
+          </div>
+          <div class="input-field col s12 m4 l1">
+            <input type="text" pInputText id="idade" pKeyFilter="num" required formControlName="idade" />
+            <label for="idade">Idade</label>
+          </div>
+          <div class="input-field col s12 m4 l3">
+            <input type="text" pInputText id="parentesco" required formControlName="parentesco" />
+            <label for="parentesco">Parentesco</label>
+          </div>
+          <div class="input-field col s12 m4 l3">
+            <input type="text" pInputText id="pareatividadentesco" required formControlName="atividade" />
+            <label for="atividade">Atividade</label>
+          </div>
+          <div class="input-field col s12 m4 l2">
+            <input type="text" pInputText id="rendacf" required formControlName="renda" />
+            <label for="rendacf">Renda</label>
+          </div>
+        </div>
       </p-tabPanel>
+    -->
+
+
     </p-tabView>
+
     <p-button type="submit" icon="fa fa-fw fa-check" label="Cadastrar"></p-button>
   </form>
-
-
-  <div class="col s12 m12 l4">
-
-  </div>
-  <div class="col s12 m12 l4">
-
-  </div>
-  <div class="col s12 m12 l4">
-
-  </div>
-
-  <div class="col s12 m12 l4">
-
-  </div>
-  <div class="col s12 m12 l4">
-
-  </div>
-  <div class="col s12 m12 l4">
-
-  </div>
-  <div class="col s12 m12 l4">
-
-  </div>
-
 </div>

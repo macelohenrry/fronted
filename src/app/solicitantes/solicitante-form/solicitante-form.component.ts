@@ -1,10 +1,10 @@
-import { SolicitantesService } from './../solicitantes.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormControl, FormArray } from '@angular/forms';
 
+import { SolicitantesService } from './../solicitantes.service';
 import { Subscription } from 'rxjs/Subscription';
 
-import { EEstadoCivil } from './../../model/solicitante';
+import { EEstadoCivil, ComposicaoFamiliar } from './../../model/solicitante';
 
 @Component({
   selector: 'app-solicitante-form',
@@ -18,6 +18,8 @@ export class SolicitanteFormComponent implements OnInit {
   selectEstadoCivil: any[];
   selectTrabalho: any[];
   selectCasa: any[];
+  selectPrevidencia: any[];
+  itensComposicaoFamiliar: FormArray;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,8 +28,9 @@ export class SolicitanteFormComponent implements OnInit {
       this.selectEstadoCivil = solicitantesService.getEnumEstadoCilvel();
       this.selectTrabalho = solicitantesService.getEnumTrablho();
       this.selectCasa = solicitantesService.getEnumCasa();
+      this.selectPrevidencia = solicitantesService.getEnumPrevidencia();
   }
-    
+     
   ngOnInit() {
     this.solicitanteForm = this.formBuilder.group({
       id: [null],
@@ -86,9 +89,21 @@ export class SolicitanteFormComponent implements OnInit {
         valorProgramaSocial: [null],
         previdenciaSocial: [null],
         outroPrevidenciaSocial: [null]
-      })
+      }),
+
+      composicaoFamiliar: this.formBuilder.array([
+        {cpf: '11111111', descricao: ''}
+      ])
     });
   }
+
+  criandoComposicaoFamiliar(): FormArray {
+    this.itensComposicaoFamiliar = new FormArray([
+      
+    ]);
+    
+  }
+
 
   onSubmit() {
     console.log(this.solicitanteForm);
