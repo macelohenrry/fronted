@@ -193,30 +193,66 @@
           </div>
           <div class="input-field col s5 m8 l2">
             <input type="text" pInputText id="outroPrevidenciaSocial" formControlName="outroPrevidenciaSocial">
-            <label for="outroPrevidenciaSocial">Especifique Outros </label>
+            <label for="outroPrevidenciaSocial">Especifique Outros</label>
           </div>
         </div>
       </p-tabPanel>
 
 
       <p-tabPanel header="Composição Falimiliar">
-        <div class="row" formArrayName="composicaoFamiliar" >
+        <div class="row" formArrayName="composicaoFamiliar">
 
-            <p-inputMask mask="999.999.999-99" formControlName="cpf" placeholder="CPF"></p-inputMask>
-          
-          <!--<p-table [value]="composicaoFamiliar">
+          <div class="card-panel hoverable grey lighten-4">
+            <p-fieldset *ngFor="let familia of composicaoFamiliar.controls; let i = index" [formGroupName]="i">
+              <p-header>{{i + 1}}</p-header>
+              <div class="input-field col s12 m8 l2">
+                <p-inputMask mask="999.999.999-99" formControlName="cpf" placeholder="CPF"></p-inputMask>
+              </div>
+              <div class="input-field col s12 m12 l4">
+                <input type="text" pInputText id="nomecf" required formControlName="nome" />
+                <label for="nomecf">Nome</label>
+              </div>
+              <div class="input-field col s12 m4 l1">
+                <input type="text" pInputText id="idade" pKeyFilter="num" required formControlName="idade" />
+                <label for="idade">Idade</label>
+              </div>
+              <div class="input-field col s12 m4 l3">
+                <input type="text" pInputText id="parentesco" required formControlName="parentesco" />
+                <label for="parentesco">Parentesco</label>
+              </div>
+              <div class="input-field col s12 m4 l3">
+                <input type="text" pInputText id="pareatividadentesco" required formControlName="atividade" />
+                <label for="atividade">Atividade</label>
+              </div>
+              <div class="input-field col s12 m4 l2">
+                <input type="text" pInputText id="renda" required formControlName="renda" />
+                <label for="rendacf">Renda</label>
+              </div>
+
+              <button pButton type="button" label="Remover" class="ui-button-danger"></button>
+
+            </p-fieldset>
+            <br/>
+            <div class="row">
+              <button pButton type="button" (click)="adicionarComposicaoFamiliar()" label="Novo Membro" class="ui-button-success"></button>
+            </div>
+          </div>
+
+
+
+          <!--<p-table [value]="composicaoFamiliar.controls">
             <ng-template pTemplate="header">
               <tr>
+                <th>Nome</th>
                 <th>CPF</th>
-                <th>Idade</th>
                 <th>Idade</th>
                 <th>Parentesto</th>
                 <th>Atividade</th>
                 <th>Renda R$</th>
               </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-iten>
-              <tr [formGroupName]="iten">
+            <ng-template pTemplate="body" let-iten [formGroupName]="iten">
+              <tr>
                 <td>
                   <div class="input-field col s12 m8 l2">
                     <p-inputMask mask="999.999.999-99" formControlName="cpf" placeholder="CPF"></p-inputMask>
@@ -248,18 +284,21 @@
                 </td>
                 <td>
                   <div class="input-field col s12 m4 l2">
-                    <input type="text" pInputText id="rendacf" required formControlName="rendacf" />
+                    <input type="text" pInputText id="renda" required formControlName="renda" />
                     <label for="rendacf">Renda</label>
                   </div>
                 </td>
               </tr>
             </ng-template>
           </p-table>-->
-        
-              
+
 
         </div>
+
+
       </p-tabPanel>
+
+
 
 
       <!--

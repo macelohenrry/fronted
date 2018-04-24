@@ -11,7 +11,7 @@ import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { PanelModule } from 'primeng/components/panel/panel';
 import { CheckboxModule } from 'primeng/components/checkbox/checkbox';
-import { TableModule } from 'primeng/components/table/table';
+import { FieldsetModule } from 'primeng/fieldset';
 
 import { SolicitantesComponent } from './solicitantes.component';
 import { SolicitanteFormComponent } from './solicitante-form/solicitante-form.component';
@@ -32,7 +32,7 @@ import { SolicitanteDetalheComponent } from './solicitante-detalhe/solicitante-d
     MaterializeModule,
     PanelModule,
     CheckboxModule,
-    TableModule,
+    FieldsetModule,
     
     SolicitantesRoutingModule
   ],

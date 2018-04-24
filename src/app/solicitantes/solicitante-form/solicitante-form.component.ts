@@ -12,25 +12,26 @@ import { EEstadoCivil, ComposicaoFamiliar } from './../../model/solicitante';
   styleUrls: ['./solicitante-form.component.css']
 })
 export class SolicitanteFormComponent implements OnInit {
-  
+
   private inscricao: Subscription;
   solicitanteForm: FormGroup;
   selectEstadoCivil: any[];
   selectTrabalho: any[];
   selectCasa: any[];
   selectPrevidencia: any[];
-  itensComposicaoFamiliar: FormArray;
+
+  familia: ComposicaoFamiliar;
 
   constructor(
     private formBuilder: FormBuilder,
     private solicitantesService: SolicitantesService
-    ) {
-      this.selectEstadoCivil = solicitantesService.getEnumEstadoCilvel();
-      this.selectTrabalho = solicitantesService.getEnumTrablho();
-      this.selectCasa = solicitantesService.getEnumCasa();
-      this.selectPrevidencia = solicitantesService.getEnumPrevidencia();
+  ) {
+    this.selectEstadoCivil = solicitantesService.getEnumEstadoCilvel();
+    this.selectTrabalho = solicitantesService.getEnumTrablho();
+    this.selectCasa = solicitantesService.getEnumCasa();
+    this.selectPrevidencia = solicitantesService.getEnumPrevidencia();
   }
-     
+
   ngOnInit() {
     this.solicitanteForm = this.formBuilder.group({
       id: [null],
@@ -43,8 +44,8 @@ export class SolicitanteFormComponent implements OnInit {
       orgaoExpedidor: [null, Validators.required],
       dataNascimento: [null, Validators.required],
       nis: [null, Validators.required],
-      estadoCivil: [null], 
-      
+      estadoCivil: [null],
+
       certidaoNascimento: this.formBuilder.group({
         id: [null],
         numero: [null, Validators.required],
@@ -53,8 +54,8 @@ export class SolicitanteFormComponent implements OnInit {
         cartorio: [null, Validators.required]
       }),
 
-      tituloEleitor: this.formBuilder.group( {
-        id: [null], 
+      tituloEleitor: this.formBuilder.group({
+        id: [null],
         numero: [null, Validators.required],
         zona: [null, Validators.required],
         sessao: [null, Validators.required],
@@ -91,29 +92,39 @@ export class SolicitanteFormComponent implements OnInit {
         outroPrevidenciaSocial: [null]
       }),
 
-      composicaoFamiliar: this.formBuilder.array([
-        {cpf: '11111111', descricao: ''}
-      ])
+      composicaoFamiliar: this.formBuilder.array([])
     });
+
   }
 
-  criandoComposicaoFamiliar(): FormArray {
-    this.itensComposicaoFamiliar = new FormArray([
-      
-    ]);
-    
+  get composicaoFamiliar(): FormArray {
+    return this.solicitanteForm.get("composicaoFamiliar") as FormArray;
   }
 
+  adicionarComposicaoFamiliar() {
+    console.log(this.solicitanteForm.value);
+    this.composicaoFamiliar.push(
+      this.formBuilder.group({
+        id: [null],
+        nome: [null],
+        cpf: [null],
+        idade: [null],
+        parentesco: [null],
+        atividade: [null],
+        renda: [null]
+      })
+    )
+  }
 
   onSubmit() {
     console.log(this.solicitanteForm);
     this.solicitantesService.onSubimit(this.solicitanteForm)
       .subscribe(res => {
-        
+
       },
-      error => {
-        
-      });
+        error => {
+
+        });
   }
 
 }
