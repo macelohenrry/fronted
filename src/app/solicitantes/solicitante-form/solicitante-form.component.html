@@ -2,11 +2,20 @@
   <h5>Nova Solicitação</h5>
   <form [formGroup]="solicitanteForm" (ngSubmit)="onSubmit()">
     <p-tabView>
+      <p-tabPanel header="Tipo de Benefício">
+        <span class="input-field">Benefício</span>
+        <div class="row">
+          <p-dropdown [options]="selectBeneficios" [style]="{'width':'200px'}" required placeholder="Selecione o Benefício" optionLabel="descricao"
+            formControlName="beneficio"></p-dropdown>
+        </div>
+      </p-tabPanel>
       <p-tabPanel header="Identificação">
         <div class="row">
           <div class="input-field col s12 m12 l4">
             <input type="text" pInputText id="nome" required formControlName="nome" />
             <label for="nome">Nome</label>
+            <app-mensagem-erro [mostrarErro]="verificaValidTouched('nome')" [msgErro]="msgErro()">
+            </app-mensagem-erro>
           </div>
           <div class="input-field col s12 m8 l3">
             <input type="text" pInputText id="apelido" required formControlName="apelido" />
@@ -163,7 +172,7 @@
               <span>Água encanada?</span>
               <p-checkbox binary="true" formControlName="aguaEncanada" id="aguaEncanada"></p-checkbox>
             </div>
-            <div class="input-field col s5 m8 l2">
+            <div class="input-field col s5 m8 l3">
               <span>Esgoto Sanitário?</span>
               <p-checkbox binary="true" formControlName="esgotoSanitario" id="esgotoSanitario"></p-checkbox>
             </div>
@@ -171,11 +180,11 @@
               <span>Energia Elétrica?</span>
               <p-checkbox binary="true" formControlName="energiaEletrica" id="energiaEletrica"></p-checkbox>
             </div>
-            <div class="input-field col s5 m8 l2">
+            <div class="input-field col s5 m8 l3">
               <span>Outro Programa Social?</span>
               <p-checkbox binary="true" formControlName="programaSocial" id="programaSocial"></p-checkbox>
             </div>
-            <div class="input-field col s5 m8 l2">
+            <div class="input-field col s5 m8 l3">
               <input type="text" pInputText id="outroProgramSocial" formControlName="outroProgramSocial">
               <label for="outroProgramSocial">Especifique o Programa</label>
             </div>
@@ -229,7 +238,7 @@
                 <label for="rendacf">Renda</label>
               </div>
 
-              <button pButton type="button" label="Remover" class="ui-button-danger"></button>
+              <button pButton type="button" (click)="removerComposicaoFamiliar(i)" label="Remover" class="ui-button-danger"></button>
 
             </p-fieldset>
             <br/>
@@ -239,101 +248,29 @@
           </div>
 
 
-
-          <!--<p-table [value]="composicaoFamiliar.controls">
-            <ng-template pTemplate="header">
-              <tr>
-                <th>Nome</th>
-                <th>CPF</th>
-                <th>Idade</th>
-                <th>Parentesto</th>
-                <th>Atividade</th>
-                <th>Renda R$</th>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-iten [formGroupName]="iten">
-              <tr>
-                <td>
-                  <div class="input-field col s12 m8 l2">
-                    <p-inputMask mask="999.999.999-99" formControlName="cpf" placeholder="CPF"></p-inputMask>
-                  </div>
-                </td>
-                <td>
-                  <div class="input-field col s12 m12 l4">
-                    <input type="text" pInputText id="nomecf" required formControlName="nome" />
-                    <label for="nomecf">Nome</label>
-                  </div>
-                </td>
-                <td>
-                  <div class="input-field col s12 m4 l1">
-                    <input type="text" pInputText id="idade" pKeyFilter="num" required formControlName="idade" />
-                    <label for="idade">Idade</label>
-                  </div>
-                </td>
-                <td>
-                  <div class="input-field col s12 m4 l3">
-                    <input type="text" pInputText id="parentesco" required formControlName="parentesco" />
-                    <label for="parentesco">Parentesco</label>
-                  </div>
-                </td>
-                <td>
-                  <div class="input-field col s12 m4 l3">
-                    <input type="text" pInputText id="pareatividadentesco" required formControlName="atividade" />
-                    <label for="atividade">Atividade</label>
-                  </div>
-                </td>
-                <td>
-                  <div class="input-field col s12 m4 l2">
-                    <input type="text" pInputText id="renda" required formControlName="renda" />
-                    <label for="rendacf">Renda</label>
-                  </div>
-                </td>
-              </tr>
-            </ng-template>
-          </p-table>-->
-
-
         </div>
+      </p-tabPanel>
 
+      <p-tabPanel header="Situação Apresentada">
+        <div class="row">
+          <div class="input-field col s12 m12 l12">
+            <textarea pInputTextarea id="situacaoApresentada" class="materialize-textarea"></textarea>
+            <label for="situacaoApresentada">Descreva</label>
+          </div>
+        </div>
 
       </p-tabPanel>
 
-
-
-
-      <!--
-      <p-tabPanel header="Dados Econômicos">
-        <div class="row" formArrayName="composicaoFamiliar">
-          <div class="input-field col s12 m8 l2">
-            <p-inputMask mask="999.999.999-99" formControlName="cpf" placeholder="CPF"></p-inputMask>
-          </div>
-          <div class="input-field col s12 m12 l4">
-            <input type="text" pInputText id="nomecf" required formControlName="nome" />
-            <label for="nomecf">Nome</label>
-          </div>
-          <div class="input-field col s12 m4 l1">
-            <input type="text" pInputText id="idade" pKeyFilter="num" required formControlName="idade" />
-            <label for="idade">Idade</label>
-          </div>
-          <div class="input-field col s12 m4 l3">
-            <input type="text" pInputText id="parentesco" required formControlName="parentesco" />
-            <label for="parentesco">Parentesco</label>
-          </div>
-          <div class="input-field col s12 m4 l3">
-            <input type="text" pInputText id="pareatividadentesco" required formControlName="atividade" />
-            <label for="atividade">Atividade</label>
-          </div>
-          <div class="input-field col s12 m4 l2">
-            <input type="text" pInputText id="rendacf" required formControlName="renda" />
-            <label for="rendacf">Renda</label>
+      <p-tabPanel header="Observação">
+        <div class="row">
+          <div class="input-field col s12 m12 l12">
+            <textarea pInputTextarea id="observacao" class="materialize-textarea"></textarea>
+            <label for="observacao">Descreva</label>
           </div>
         </div>
       </p-tabPanel>
-    -->
-
 
     </p-tabView>
-
     <p-button type="submit" icon="fa fa-fw fa-check" label="Cadastrar"></p-button>
   </form>
 </div>

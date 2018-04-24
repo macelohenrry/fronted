@@ -33,8 +33,8 @@ export class BeneficioService {
 
   getBeneficios() {
     return this.http.get(`${this.url}/beneficios`, { headers: this.headers })
-      .map((res: Response) => res.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+      .map((res: Response) => res.json());
+      
   }
 
   /*getBeneficio(id: number) {

@@ -57,6 +57,7 @@ export class SolicitantesService {
     ]
     return selectCasa;
   }
+
   getEnumPrevidencia() {
     let selectPrevidencia: any[];
     selectPrevidencia = [
@@ -69,4 +70,5 @@ export class SolicitantesService {
     ]
     return selectPrevidencia;
   }
+
 }

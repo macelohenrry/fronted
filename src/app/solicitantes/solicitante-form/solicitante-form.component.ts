@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Beneficio, EMensage } from './../../model/model';
 import { FormGroup, Validators, FormBuilder, FormControl, FormArray } from '@angular/forms';
 
-import { SolicitantesService } from './../solicitantes.service';
 import { Subscription } from 'rxjs/Subscription';
 
+import { IFormCanDeactivate } from './../../guards/iform-candeactivate';
+import { MessageService } from 'primeng/components/common/messageservice';
+import { SolicitantesService } from './../solicitantes.service';
+import { BeneficioService } from './../../beneficio/beneficio.service';
 import { EEstadoCivil, ComposicaoFamiliar } from './../../model/solicitante';
 
 @Component({
@@ -11,25 +16,31 @@ import { EEstadoCivil, ComposicaoFamiliar } from './../../model/solicitante';
   templateUrl: './solicitante-form.component.html',
   styleUrls: ['./solicitante-form.component.css']
 })
-export class SolicitanteFormComponent implements OnInit {
+export class SolicitanteFormComponent implements OnInit, IFormCanDeactivate {
 
   private inscricao: Subscription;
-  solicitanteForm: FormGroup;
-  selectEstadoCivil: any[];
-  selectTrabalho: any[];
-  selectCasa: any[];
-  selectPrevidencia: any[];
+  private solicitanteForm: FormGroup;
+  private selectEstadoCivil: any[];
+  private selectTrabalho: any[];
+  private selectCasa: any[];
+  private selectPrevidencia: any[];
+  private selectBeneficios: Beneficio[];
+  private ben: Beneficio;
 
-  familia: ComposicaoFamiliar;
 
   constructor(
     private formBuilder: FormBuilder,
-    private solicitantesService: SolicitantesService
+    private solicitantesService: SolicitantesService,
+    private beneficioService: BeneficioService,
+    private messageService: MessageService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
     this.selectEstadoCivil = solicitantesService.getEnumEstadoCilvel();
     this.selectTrabalho = solicitantesService.getEnumTrablho();
     this.selectCasa = solicitantesService.getEnumCasa();
     this.selectPrevidencia = solicitantesService.getEnumPrevidencia();
+
   }
 
   ngOnInit() {
@@ -45,6 +56,9 @@ export class SolicitanteFormComponent implements OnInit {
       dataNascimento: [null, Validators.required],
       nis: [null, Validators.required],
       estadoCivil: [null],
+      situacaoApresentada: [null],
+      observacao: [null],
+      beneficio: [null],
 
       certidaoNascimento: this.formBuilder.group({
         id: [null],
@@ -95,6 +109,24 @@ export class SolicitanteFormComponent implements OnInit {
       composicaoFamiliar: this.formBuilder.array([])
     });
 
+    this.beneficioService.getBeneficios()
+      .subscribe(beneficios => this.selectBeneficios = beneficios);
+  }
+
+  onSubmit() {
+    if (this.solicitanteForm.valid) {
+      this.solicitantesService.onSubimit(this.solicitanteForm)
+        .subscribe(res => {
+          this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: EMensage.MsgSucessoBeneficio });
+          this.solicitanteForm.reset();
+          this.router.navigate(['/beneficios']);
+        },
+          error => {
+
+          });
+    } else {
+      this.verificaValidacoesForm(this.solicitanteForm);
+    }
   }
 
   get composicaoFamiliar(): FormArray {
@@ -102,7 +134,6 @@ export class SolicitanteFormComponent implements OnInit {
   }
 
   adicionarComposicaoFamiliar() {
-    console.log(this.solicitanteForm.value);
     this.composicaoFamiliar.push(
       this.formBuilder.group({
         id: [null],
@@ -115,16 +146,34 @@ export class SolicitanteFormComponent implements OnInit {
       })
     )
   }
-
-  onSubmit() {
-    console.log(this.solicitanteForm);
-    this.solicitantesService.onSubimit(this.solicitanteForm)
-      .subscribe(res => {
-
-      },
-        error => {
-
-        });
+  removerComposicaoFamiliar(i) {
+    this.composicaoFamiliar.removeAt(i);
   }
+
+  verificaValidacoesForm(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(campo => {
+      const controle = formGroup.get(campo)
+      controle.markAsTouched();
+      if (controle instanceof FormGroup) {
+        this.verificaValidacoesForm(controle);
+      }
+    });
+  }
+
+  podeDesativar() {
+    if(this.solicitanteForm.touched)
+      return confirm(EMensage.MsgInfoSairRota);
+    return true;
+  }
+
+  verificaValidTouched(campo) {
+    return !this.solicitanteForm.get(campo).valid && this.solicitanteForm.get(campo).touched;
+  }
+
+  msgErro() {
+    return EMensage.ErroCampoObrigatorio;
+  }
+
+
 
 }
