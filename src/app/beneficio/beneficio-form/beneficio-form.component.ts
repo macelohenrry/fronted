@@ -55,8 +55,8 @@ export class BeneficioFormComponent implements OnInit, IFormCanDeactivate {
   onSubmit() {
     if (this.formBeneficio.valid) {
       this.beneficioService.onSubmit(this.formBeneficio)
-        .subscribe(
-          res => {
+      .subscribe(
+        res => {
             this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: EMensage.MsgSucessoBeneficio });
             this.formBeneficio.reset();
             this.router.navigate(['/beneficios']);
@@ -69,7 +69,7 @@ export class BeneficioFormComponent implements OnInit, IFormCanDeactivate {
       this.verificaValidacoesForm(this.formBeneficio);
     }
   }
-
+ 
   verificaValidacoesForm(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(campo => {
       const controle = formGroup.get(campo)

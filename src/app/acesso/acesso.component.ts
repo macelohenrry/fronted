@@ -4,7 +4,6 @@ import { Http, Response } from '@angular/http';
 import { Router } from '@angular/router'
 
 import { MessageService } from 'primeng/components/common/messageservice';
-import { Message } from 'primeng/components/common/api';
 
 import { EMensage } from './../model/model';
 import { Acesso } from './../model/model';
@@ -20,7 +19,6 @@ export class AcessoComponent implements OnInit {
 
   private formularioLogin: FormGroup;
   private acesso: Acesso;
-  msgs: Message[] = [];
 
   constructor(
     private router: Router,

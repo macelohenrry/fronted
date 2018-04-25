@@ -16,6 +16,7 @@ export class BeneficioComponent implements OnInit {
 
   private beneficios: Beneficio[];
   
+  
   constructor(
     private beneficioService: BeneficioService,
     private router: Router,

@@ -112,27 +112,35 @@ export class SolicitanteFormComponent implements OnInit, IFormCanDeactivate {
     this.beneficioService.getBeneficios()
       .subscribe(beneficios => this.selectBeneficios = beneficios);
   }
-
+  
   onSubmit() {
     if (this.solicitanteForm.valid) {
       this.solicitantesService.onSubimit(this.solicitanteForm)
-        .subscribe(res => {
-          this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: EMensage.MsgSucessoBeneficio });
-          this.solicitanteForm.reset();
-          this.router.navigate(['/beneficios']);
-        },
-          error => {
-
-          });
+      .subscribe(res => {
+        this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: EMensage.MsgSucessoBeneficio });
+        this.solicitanteForm.reset();
+        this.router.navigate(['/beneficios']);
+      },
+      error => {
+        
+      });
     } else {
+      console.log(false);
       this.verificaValidacoesForm(this.solicitanteForm);
     }
   }
 
+
+
+  
+
+
+
+  
+  
   get composicaoFamiliar(): FormArray {
     return this.solicitanteForm.get("composicaoFamiliar") as FormArray;
   }
-
   adicionarComposicaoFamiliar() {
     this.composicaoFamiliar.push(
       this.formBuilder.group({

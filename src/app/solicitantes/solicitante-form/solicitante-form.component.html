@@ -14,26 +14,28 @@
           <div class="input-field col s12 m12 l4">
             <input type="text" pInputText id="nome" required formControlName="nome" />
             <label for="nome">Nome</label>
-            <app-mensagem-erro [mostrarErro]="verificaValidTouched('nome')" [msgErro]="msgErro()">
-            </app-mensagem-erro>
+            <app-mensagem-erro [mostrarErro]="verificaValidTouched('nome')" [msgErro]="msgErro()"></app-mensagem-erro>
           </div>
           <div class="input-field col s12 m8 l3">
             <input type="text" pInputText id="apelido" required formControlName="apelido" />
             <label for="apelido">Apelido</label>
+            <app-mensagem-erro [mostrarErro]="verificaValidTouched('apelido')" [msgErro]="msgErro()"></app-mensagem-erro>
           </div>
           <div class="input-field col s12 m8 l3">
-            <input type="email" pInputText id="email" required formControlName="email" />
+            <input type="email" pInputText id="email" formControlName="email" />
             <label for="email">Email</label>
           </div>
           <div class="input-field col s12 m8 l2">
             <p-inputMask mask="(99) 99999-9999" id="contato" formControlName="contato" placeholder="Contato"></p-inputMask>
           </div>
           <div class="input-field col s12 m8 l2">
-            <p-inputMask mask="999.999.999-99" formControlName="cpf" placeholder="CPF"></p-inputMask>
+            <p-inputMask mask="999.999.999-99" required formControlName="cpf" placeholder="CPF"></p-inputMask>
+            <app-mensagem-erro [mostrarErro]="verificaValidTouched('cpf')" [msgErro]="msgErro()"></app-mensagem-erro>
           </div>
           <div class="input-field col s5 m8 l2">
             <input type="text" pInputText pKeyFilter="num" id="rg" required formControlName="rg">
             <label for="rg">RG</label>
+            <app-mensagem-erro [mostrarErro]="verificaValidTouched('rg')" [msgErro]="msgErro()"></app-mensagem-erro>
           </div>
           <div class="input-field col s5 m8 l2">
             <input type="text" pInputText id="orgEspe" required formControlName="orgaoExpedidor" />

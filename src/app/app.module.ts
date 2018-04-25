@@ -6,8 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app.routing.module';
 
-import { ButtonModule } from 'primeng/components/button/button';
-import { InputTextModule } from 'primeng/components/inputtext/inputtext';
+import { MessageService } from 'primeng/components/common/messageservice';
+import { GrowlModule } from 'primeng/components/growl/growl';
 
 import { SheredModule } from './shered/shered.module';
 import { MenuModule } from './menu/menu.module';
@@ -35,13 +35,13 @@ import { AuthGuard } from './guards/auth.guard';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MenuModule,
-    InputTextModule,
-    ButtonModule,
+    GrowlModule,
+
     SheredModule,
     
     AppRoutingModule
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [MessageService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
