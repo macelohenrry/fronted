@@ -7,6 +7,7 @@
         <div class="row">
           <p-dropdown [options]="selectBeneficios" [style]="{'width':'200px'}" required placeholder="Selecione o Benefício" optionLabel="descricao"
             formControlName="beneficio"></p-dropdown>
+          <app-mensagem-erro [mostrarErro]="verificaValidTouched('beneficio')" [msgErro]="msgErro()"></app-mensagem-erro>
         </div>
       </p-tabPanel>
       <p-tabPanel header="Identificação">
@@ -28,6 +29,9 @@
           <div class="input-field col s12 m8 l2">
             <p-inputMask mask="(99) 99999-9999" id="contato" formControlName="contato" placeholder="Contato"></p-inputMask>
           </div>
+        </div>
+
+        <div class="row">
           <div class="input-field col s12 m8 l2">
             <p-inputMask mask="999.999.999-99" required formControlName="cpf" placeholder="CPF"></p-inputMask>
             <app-mensagem-erro [mostrarErro]="verificaValidTouched('cpf')" [msgErro]="msgErro()"></app-mensagem-erro>
@@ -44,86 +48,102 @@
           <div class="input-field col s12 m8 l2">
             <input materialize="pickadate" [materializeParams]="[{format: 'dd/mm/yyyy'}]" type="text" class="datepicker" required formControlName="dataNascimento">
             <label for="dataNascimento">Data Nascimento</label>
+            <app-mensagem-erro [mostrarErro]="verificaValidTouched('dataNascimento')" [msgErro]="msgErro()"></app-mensagem-erro>
           </div>
           <div class="input-field col s5 m8 l3">
             <input type="text" pInputText pKeyFilter="num" id="nis" formControlName="nis">
             <label for="nis">NIS</label>
           </div>
+        </div>
+
+        <div class="row">
           <div class="input-field col s3">
             <select materialize="material_select" [materializeSelectOptions]="selectOptions" formControlName="estadoCivil">
               <option value="" disabled selected>Estado Civil</option>
               <option *ngFor="let option of selectEstadoCivil" [value]="option.id">{{option.descricao}}</option>
             </select>
             <label>Selecione</label>
+            <app-mensagem-erro [mostrarErro]="verificaValidTouched('estadoCivil')" [msgErro]="msgErro()"></app-mensagem-erro>
           </div>
         </div>
 
-        <p-panel header="Certidão de Nascimento">
-          <div class="row" formGroupName="certidaoNascimento">
-            <div class="input-field col s5 m8 l2">
-              <input type="text" pInputText id="numero" formControlName="numero">
-              <label for="numero">Número</label>
-            </div>
-            <div class="input-field col s5 m8 l2">
-              <input type="text" pInputText id="livro" formControlName="livro">
+        <p-panel header="Certidão de Nascimento" formGroupName="certidaoNascimento">
+          <div class="row">
+            <div class="input-field col s5 m8 l3">
+              <input type="text" pInputText id="livro" required formControlName="livro">
               <label for="livro">Livro</label>
+              <app-mensagem-erro [mostrarErro]="verificaValidTouched('certidaoNascimento.livro')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
-            <div class="input-field col s5 m8 l2">
-              <input type="text" pInputText id="folha" formControlName="folha">
+            <div class="input-field col s5 m8 l3">
+              <input type="text" pInputText id="numero" required formControlName="numero">
+              <label for="numero">Número</label>
+              <app-mensagem-erro [mostrarErro]="verificaValidTouched('certidaoNascimento.numero')" [msgErro]="msgErro()"></app-mensagem-erro>
+            </div>
+            <div class="input-field col s5 m8 l3">
+              <input type="text" pInputText id="folha" required formControlName="folha">
               <label for="folha">Folha</label>
+              <app-mensagem-erro [mostrarErro]="verificaValidTouched('certidaoNascimento.folha')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
-            <div class="input-field col s5 m8 l4">
-              <input type="text" pInputText id="cartorio" formControlName="cartorio">
+            <div class="input-field col s5 m8 l3">
+              <input type="text" pInputText id="cartorio" required formControlName="cartorio">
               <label for="cartorio">Cartório</label>
-            </div>
-            <div class="input-field col s5 m8 l2">
-              <input type="text" pInputText id="folha" formControlName="folha">
-              <label for="folha">Folha</label>
+              <app-mensagem-erro [mostrarErro]="verificaValidTouched('certidaoNascimento.cartorio')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
           </div>
         </p-panel>
         <br/>
-        <p-panel header="Título de Eleitor">
-          <div class="row" formGroupName="tituloEleitor">
+        <p-panel header="Título de Eleitor" formGroupName="tituloEleitor">
+          <div class="row" >
             <div class="input-field col s5 m8 l2">
               <input type="text" pInputText pKeyFilter="num" id="numero" formControlName="numero">
               <label for="numero">Número</label>
+              <app-mensagem-erro [mostrarErro]="verificaValidTouched('tituloEleitor.numero')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
             <div class="input-field col s5 m8 l2">
               <input type="text" pInputText pKeyFilter="num" id="zona" formControlName="zona">
               <label for="zona">Zona</label>
+              <app-mensagem-erro [mostrarErro]="verificaValidTouched('tituloEleitor.zona')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
             <div class="input-field col s5 m8 l2">
               <input type="text" pInputText pKeyFilter="num" id="sessao" formControlName="sessao">
               <label for="sessao">Sessão</label>
+              <app-mensagem-erro [mostrarErro]="verificaValidTouched('tituloEleitor.sessao')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
           </div>
         </p-panel>
         <br/>
-        <p-panel header="Endereço">
-          <div class="row" formGroupName="endereco">
+        <p-panel header="Endereço" formGroupName="endereco">
+          <div class="row">
             <div class="input-field col s12 m8 l2">
               <p-inputMask mask="99999-999" id="cep" formControlName="cep" placeholder="CEP"></p-inputMask>
+              <app-mensagem-erro [mostrarErro]="verificaValidTouched('endereco.cep')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
             <div class="input-field col s5 m8 l5">
               <input type="text" pInputText id="rua" formControlName="rua">
               <label for="rua">Rua</label>
+              <app-mensagem-erro [mostrarErro]="verificaValidTouched('endereco.rua')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
             <div class="input-field col s5 m8 l3">
               <input type="text" pInputText id="bairro" formControlName="bairro">
               <label for="bairro">Bairro</label>
+              <app-mensagem-erro [mostrarErro]="verificaValidTouched('endereco.bairro')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
             <div class="input-field col s5 m8 l2">
               <input type="text" pInputText id="numero" formControlName="numero">
               <label for="numero">Número</label>
+              <app-mensagem-erro [mostrarErro]="verificaValidTouched('endereco.numero')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
+          </div>
+          <div class="row">
             <div class="input-field col s5 m8 l3">
               <input type="text" pInputText id="complemento" formControlName="complemento">
               <label for="complemento">Complemento</label>
+              <app-mensagem-erro [mostrarErro]="verificaValidTouched('endereco.complemento')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
             <div class="input-field col s5 m8 l5">
               <input type="text" pInputText id="pontoReferencia" formControlName="pontoReferencia">
               <label for="pontoReferencia">Ponto Referência</label>
+              <app-mensagem-erro [mostrarErro]="verificaValidTouched('endereco.pontoReferencia')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
           </div>
         </p-panel>

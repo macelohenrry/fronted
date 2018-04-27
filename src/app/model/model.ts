@@ -15,7 +15,7 @@ export class Beneficio {
 
 export enum EMensage {
     ErroLogin = "Não foi possivel autenticar, verifique as informações!",
-    ErroCampoObrigatorio = "Campo obrigatório!",
+    ErroCampoObrigatorio = "Obrigatório!",
     MsgSucessoBeneficio = "As Informações foram salvas com sucesso.",
     MsgInfoSairRota = "Tem certeza que deseja sair dessa página? Quaisquer modificações serão perdidas."
 }

@@ -25,7 +25,6 @@ export class SolicitanteFormComponent implements OnInit, IFormCanDeactivate {
   private selectCasa: any[];
   private selectPrevidencia: any[];
   private selectBeneficios: Beneficio[];
-  private ben: Beneficio;
 
 
   constructor(
@@ -54,8 +53,8 @@ export class SolicitanteFormComponent implements OnInit, IFormCanDeactivate {
       rg: [null, Validators.required],
       orgaoExpedidor: [null, Validators.required],
       dataNascimento: [null, Validators.required],
-      nis: [null, Validators.required],
-      estadoCivil: [null],
+      nis: [null],
+      estadoCivil: [null, Validators.required],
       situacaoApresentada: [null],
       observacao: [null],
       beneficio: [null],
@@ -77,12 +76,12 @@ export class SolicitanteFormComponent implements OnInit, IFormCanDeactivate {
 
       endereco: this.formBuilder.group({
         id: [null],
-        cep: [null],
+        cep: [null, Validators.required],
         rua: [null, Validators.required],
-        bairro: [null],
-        complemento: [null],
-        numero: [null],
-        pontoReferencia: [null]
+        bairro: [null, Validators.required],
+        complemento: [null, Validators.required],
+        numero: [null, Validators.required],
+        pontoReferencia: [null, Validators.required]
       }),
 
       dadoSocioEconomico: this.formBuilder.group({
@@ -125,7 +124,6 @@ export class SolicitanteFormComponent implements OnInit, IFormCanDeactivate {
         
       });
     } else {
-      console.log(false);
       this.verificaValidacoesForm(this.solicitanteForm);
     }
   }
