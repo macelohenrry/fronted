@@ -5,7 +5,7 @@
       <p-tabPanel header="Tipo de Benefício">
         <span class="input-field">Benefício</span>
         <div class="row">
-          <p-dropdown [options]="selectBeneficios" [style]="{'width':'200px'}" required placeholder="Selecione o Benefício" optionLabel="descricao"
+          <p-dropdown [options]="selectBeneficios" [style]="{'width':'500px'}" required placeholder="Selecione o Benefício" optionLabel="descricao"
             formControlName="beneficio"></p-dropdown>
           <app-mensagem-erro [mostrarErro]="verificaValidTouched('beneficio')" [msgErro]="msgErro()"></app-mensagem-erro>
         </div>

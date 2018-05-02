@@ -1,3 +1,26 @@
 <div class="col s12 m12 l9">
-  Detalhes
+  <p-table #dt [value]="solicitantes" >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>CPF</th>
+        <th>Nome</th>
+        <th>Apelido</th>
+        <th>RG</th>
+        <th>Opções</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-solicitante>
+      <tr>
+        <td>{{solicitante.cpf}}</td>
+        <td>{{solicitante.nome}}</td>
+        <td>{{solicitante.apelido}}</td>
+        <td>{{solicitante.rg}}</td>
+        <td>
+            <a [routerLink]="['/solicitantes', solicitante.id, 'editar']" class="btn-floating waves-effect waves-light red">
+              <i class="material-icons right">create</i>
+            </a>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>

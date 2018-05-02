@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, Response } from '@angular/http';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { EEstadoCivil, ETrabalho, ECasa, EPrevidencia } from './../model/solicitante';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/toPromise';
+
+import { EEstadoCivil, ETrabalho, ECasa, EPrevidencia, Solicitante } from './../model/solicitante';
 
 @Injectable()
 export class SolicitantesService {
@@ -71,4 +74,13 @@ export class SolicitantesService {
     return selectPrevidencia;
   }
 
+  getSolicitantes() {
+    return this.http.get(`${this.url}/solicitantes`, { headers: this.headers })
+      .map((res: Response) => res.json());
+  }
+
+  getSolicitante(id: number) {
+    return this.http.get(`${this.url}/solicitantes/${id}`, { headers: this.headers })
+      .map(res => res.json());
+  }
 }

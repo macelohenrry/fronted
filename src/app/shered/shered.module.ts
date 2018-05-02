@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { DataTableModule } from 'primeng/components/datatable/datatable';
+import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/components/button/button';
 import { MessageModule } from 'primeng/components/message/message';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
@@ -29,6 +30,7 @@ import { MensagemErroComponent } from './mensagem-erro/mensagem-erro.component';
     ReactiveFormsModule,
 
     DataTableModule,
+    TableModule,
     ButtonModule,
     MessageModule,
     InputTextModule,
@@ -57,6 +59,7 @@ import { MensagemErroComponent } from './mensagem-erro/mensagem-erro.component';
     CommonModule, 
     ReactiveFormsModule,
     DataTableModule,
+    TableModule, 
     ButtonModule,
     MessageModule,
     InputTextModule,
