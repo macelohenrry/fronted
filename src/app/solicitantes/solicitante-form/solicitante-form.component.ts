@@ -47,7 +47,7 @@ export class SolicitanteFormComponent implements OnInit, IFormCanDeactivate {
       id: [null],
       nome: [null, Validators.required],
       apelido: [null, Validators.required],
-      email: [null],
+      email: [null, [Validators.required, Validators.email]],
       contato: [null, Validators.required],
       cpf: [null, Validators.required],
       rg: [null, Validators.required],
@@ -111,44 +111,37 @@ export class SolicitanteFormComponent implements OnInit, IFormCanDeactivate {
     this.beneficioService.getBeneficios()
       .subscribe(beneficios => this.selectBeneficios = beneficios);
   }
-  
+
   onSubmit() {
     if (this.solicitanteForm.valid) {
       this.solicitantesService.onSubimit(this.solicitanteForm)
-      .subscribe(res => {
-        this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: EMensage.MsgSucessoBeneficio });
-        this.solicitanteForm.reset();
-        this.router.navigate(['/beneficios']);
-      },
-      error => {
-        
-      });
+        .subscribe(res => {
+          this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: EMensage.MsgSucessoBeneficio });
+          this.solicitanteForm.reset();
+          this.router.navigate(['/solicitantes']);
+        },
+          error => {
+            this.messageService.add({ severity: 'error', summary: 'Erro', detail: EMensage.ErroInformacaoInvalida});
+          });
     } else {
       this.verificaValidacoesForm(this.solicitanteForm);
     }
   }
 
-
-
-  
-
-
-
-  
-  
   get composicaoFamiliar(): FormArray {
     return this.solicitanteForm.get("composicaoFamiliar") as FormArray;
   }
+
   adicionarComposicaoFamiliar() {
     this.composicaoFamiliar.push(
       this.formBuilder.group({
         id: [null],
-        nome: [null],
-        cpf: [null],
-        idade: [null],
-        parentesco: [null],
-        atividade: [null],
-        renda: [null]
+        nome: [null, Validators.required],
+        cpf: [null, Validators.required],
+        idade: [null, Validators.required],
+        parentesco: [null, Validators.required],
+        atividade: [null, Validators.required],
+        renda: [null, Validators.required]
       })
     )
   }
@@ -166,20 +159,23 @@ export class SolicitanteFormComponent implements OnInit, IFormCanDeactivate {
     });
   }
 
+
   podeDesativar() {
-    if(this.solicitanteForm.touched)
+    if (this.solicitanteForm.touched)
       return confirm(EMensage.MsgInfoSairRota);
     return true;
   }
 
   verificaValidTouched(campo) {
-    return !this.solicitanteForm.get(campo).valid && this.solicitanteForm.get(campo).touched;
+    return !this.solicitanteForm.get(campo).valid && (this.solicitanteForm.get(campo).touched || this.solicitanteForm.get(campo).dirty);
   }
 
   msgErro() {
     return EMensage.ErroCampoObrigatorio;
   }
-
+  msgErroFormArray() {
+    return EMensage.ErroPreencherTodosCampos;
+  }
 
 
 }

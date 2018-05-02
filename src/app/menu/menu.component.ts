@@ -20,9 +20,9 @@ export class MenuComponent implements OnInit {
   }
 
   sair() {
-    this.authService.limparAccessToken();
     this.authService.sair()
       .subscribe(res => res);
+    this.authService.limparAccessToken();
     this.router.navigate(['/acesso']);
   }
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -41,7 +41,15 @@ import { AuthGuard } from './guards/auth.guard';
     
     AppRoutingModule
   ],
-  providers: [MessageService, AuthService, AuthGuard],
+  providers: [
+    {
+      provide: LOCALE_ID, 
+      useValue: 'pt-BR'
+    },
+    MessageService, 
+    AuthService, 
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

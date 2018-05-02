@@ -25,9 +25,11 @@
           <div class="input-field col s12 m8 l3">
             <input type="email" pInputText id="email" formControlName="email" />
             <label for="email">Email</label>
+            <app-mensagem-erro [mostrarErro]="verificaValidTouched('email')" [msgErro]="msgErro()"></app-mensagem-erro>
           </div>
           <div class="input-field col s12 m8 l2">
             <p-inputMask mask="(99) 99999-9999" id="contato" formControlName="contato" placeholder="Contato"></p-inputMask>
+            <app-mensagem-erro [mostrarErro]="verificaValidTouched('contato')" [msgErro]="msgErro()"></app-mensagem-erro>
           </div>
         </div>
 
@@ -44,6 +46,7 @@
           <div class="input-field col s5 m8 l2">
             <input type="text" pInputText id="orgEspe" required formControlName="orgaoExpedidor" />
             <label for="orgEspe">Orgão Espedidor</label>
+            <app-mensagem-erro [mostrarErro]="verificaValidTouched('orgaoExpedidor')" [msgErro]="msgErro()"></app-mensagem-erro>
           </div>
           <div class="input-field col s12 m8 l2">
             <input materialize="pickadate" [materializeParams]="[{format: 'dd/mm/yyyy'}]" type="text" class="datepicker" required formControlName="dataNascimento">
@@ -51,14 +54,14 @@
             <app-mensagem-erro [mostrarErro]="verificaValidTouched('dataNascimento')" [msgErro]="msgErro()"></app-mensagem-erro>
           </div>
           <div class="input-field col s5 m8 l3">
-            <input type="text" pInputText pKeyFilter="num" id="nis" formControlName="nis">
+            <input type="text" pInputText id="nis" formControlName="nis">
             <label for="nis">NIS</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s3">
-            <select materialize="material_select" [materializeSelectOptions]="selectOptions" formControlName="estadoCivil">
+            <select materialize="material_select" [materializeSelectOptions]="selectOptions" formControlName="estadoCivil" required>
               <option value="" disabled selected>Estado Civil</option>
               <option *ngFor="let option of selectEstadoCivil" [value]="option.id">{{option.descricao}}</option>
             </select>
@@ -93,19 +96,19 @@
         </p-panel>
         <br/>
         <p-panel header="Título de Eleitor" formGroupName="tituloEleitor">
-          <div class="row" >
+          <div class="row">
             <div class="input-field col s5 m8 l2">
-              <input type="text" pInputText pKeyFilter="num" id="numero" formControlName="numero">
+              <input type="text" pInputText pKeyFilter="num" id="numero" formControlName="numero" required>
               <label for="numero">Número</label>
               <app-mensagem-erro [mostrarErro]="verificaValidTouched('tituloEleitor.numero')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
             <div class="input-field col s5 m8 l2">
-              <input type="text" pInputText pKeyFilter="num" id="zona" formControlName="zona">
+              <input type="text" pInputText pKeyFilter="num" id="zona" formControlName="zona" required>
               <label for="zona">Zona</label>
               <app-mensagem-erro [mostrarErro]="verificaValidTouched('tituloEleitor.zona')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
             <div class="input-field col s5 m8 l2">
-              <input type="text" pInputText pKeyFilter="num" id="sessao" formControlName="sessao">
+              <input type="text" pInputText pKeyFilter="num" id="sessao" formControlName="sessao" required>
               <label for="sessao">Sessão</label>
               <app-mensagem-erro [mostrarErro]="verificaValidTouched('tituloEleitor.sessao')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
@@ -115,33 +118,33 @@
         <p-panel header="Endereço" formGroupName="endereco">
           <div class="row">
             <div class="input-field col s12 m8 l2">
-              <p-inputMask mask="99999-999" id="cep" formControlName="cep" placeholder="CEP"></p-inputMask>
+              <p-inputMask mask="99999-999" id="cep" formControlName="cep" placeholder="CEP" required></p-inputMask>
               <app-mensagem-erro [mostrarErro]="verificaValidTouched('endereco.cep')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
             <div class="input-field col s5 m8 l5">
-              <input type="text" pInputText id="rua" formControlName="rua">
+              <input type="text" pInputText id="rua" formControlName="rua" required>
               <label for="rua">Rua</label>
               <app-mensagem-erro [mostrarErro]="verificaValidTouched('endereco.rua')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
             <div class="input-field col s5 m8 l3">
-              <input type="text" pInputText id="bairro" formControlName="bairro">
+              <input type="text" pInputText id="bairro" formControlName="bairro" required>
               <label for="bairro">Bairro</label>
               <app-mensagem-erro [mostrarErro]="verificaValidTouched('endereco.bairro')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
             <div class="input-field col s5 m8 l2">
-              <input type="text" pInputText id="numero" formControlName="numero">
+              <input type="text" pInputText id="numero" formControlName="numero" required>
               <label for="numero">Número</label>
               <app-mensagem-erro [mostrarErro]="verificaValidTouched('endereco.numero')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s5 m8 l3">
-              <input type="text" pInputText id="complemento" formControlName="complemento">
+              <input type="text" pInputText id="complemento" formControlName="complemento" required>
               <label for="complemento">Complemento</label>
               <app-mensagem-erro [mostrarErro]="verificaValidTouched('endereco.complemento')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
             <div class="input-field col s5 m8 l5">
-              <input type="text" pInputText id="pontoReferencia" formControlName="pontoReferencia">
+              <input type="text" pInputText id="pontoReferencia" formControlName="pontoReferencia" required>
               <label for="pontoReferencia">Ponto Referência</label>
               <app-mensagem-erro [mostrarErro]="verificaValidTouched('endereco.pontoReferencia')" [msgErro]="msgErro()"></app-mensagem-erro>
             </div>
@@ -149,8 +152,8 @@
         </p-panel>
       </p-tabPanel>
 
-      <p-tabPanel header="Dados Socioeconômicos">
-        <div class="row" formGroupName="dadoSocioEconomico">
+      <p-tabPanel header="Dados Socioeconômicos" formGroupName="dadoSocioEconomico">
+        <div class="row">
           <div class="input-field col s5 m8 l2">
             <span>Estuda?</span>
             <p-checkbox binary="true" formControlName="estuda" id="estuda"></p-checkbox>
@@ -165,62 +168,68 @@
           </div>
           <div class="input-field col s3">
             <select materialize="material_select" [materializeSelectOptions]="selectOptions" formControlName="trabalho">
-              <option value="" disabled selected>Trabalho</option>
+              <option value="" disabled selected>Selecione</option>
               <option *ngFor="let option of selectTrabalho" [value]="option.id">{{option.descricao}}</option>
             </select>
             <label>Selecione a forma de trabalho</label>
+            <app-mensagem-erro [mostrarErro]="verificaValidTouched('dadoSocioEconomico.trabalho')" [msgErro]="msgErro()"></app-mensagem-erro>
           </div>
+        </div>
+        <div class="row">
           <div class="input-field col s5 m8 l3">
             <input type="text" pInputText id="funcao" formControlName="funcao">
             <label for="funcao">Função</label>
           </div>
           <div class="input-field col s5 m8 l2">
-            <input type="text" pInputText id="renda" formControlName="renda">
+            <input type="text" pInputText id="renda" formControlName="renda" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
             <label for="renda">Renda</label>
           </div>
           <div class="input-field col s3">
             <select materialize="material_select" [materializeSelectOptions]="selectOptions" formControlName="casa">
-              <option value="" disabled selected>Casa</option>
+              <option value="" disabled selected>Selecione</option>
               <option *ngFor="let option of selectCasa" [value]="option.id">{{option.descricao}}</option>
             </select>
             <label>Selecione o tipo de Casa</label>
+            <app-mensagem-erro [mostrarErro]="verificaValidTouched('dadoSocioEconomico.casa')" [msgErro]="msgErro()"></app-mensagem-erro>
           </div>
           <div class="input-field col s5 m8 l3">
             <input type="text" pInputText id="outroTipoCasa" formControlName="outroTipoCasa">
             <label for="outroTipoCasa">Outro tipo de Casa</label>
           </div>
-          <div class="row">
-            <div class="input-field col s5 m8 l2">
-              <span>Água encanada?</span>
-              <p-checkbox binary="true" formControlName="aguaEncanada" id="aguaEncanada"></p-checkbox>
-            </div>
-            <div class="input-field col s5 m8 l3">
-              <span>Esgoto Sanitário?</span>
-              <p-checkbox binary="true" formControlName="esgotoSanitario" id="esgotoSanitario"></p-checkbox>
-            </div>
-            <div class="input-field col s5 m8 l2">
-              <span>Energia Elétrica?</span>
-              <p-checkbox binary="true" formControlName="energiaEletrica" id="energiaEletrica"></p-checkbox>
-            </div>
-            <div class="input-field col s5 m8 l3">
-              <span>Outro Programa Social?</span>
-              <p-checkbox binary="true" formControlName="programaSocial" id="programaSocial"></p-checkbox>
-            </div>
-            <div class="input-field col s5 m8 l3">
-              <input type="text" pInputText id="outroProgramSocial" formControlName="outroProgramSocial">
-              <label for="outroProgramSocial">Especifique o Programa</label>
-            </div>
-            <div class="input-field col s5 m8 l2">
-              <input type="text" pInputText id="valorProgramaSocial" formControlName="valorProgramaSocial">
-              <label for="valorProgramaSocial">Valor </label>
-            </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s5 m8 l2">
+            <span>Água encanada?</span>
+            <p-checkbox binary="true" formControlName="aguaEncanada" id="aguaEncanada"></p-checkbox>
+          </div>
+          <div class="input-field col s5 m8 l3">
+            <span>Esgoto Sanitário?</span>
+            <p-checkbox binary="true" formControlName="esgotoSanitario" id="esgotoSanitario"></p-checkbox>
+          </div>
+          <div class="input-field col s5 m8 l2">
+            <span>Energia Elétrica?</span>
+            <p-checkbox binary="true" formControlName="energiaEletrica" id="energiaEletrica"></p-checkbox>
+          </div>
+          <div class="input-field col s5 m8 l3">
+            <span>Participa de outro Programa Social?</span>
+            <p-checkbox binary="true" formControlName="programaSocial" id="programaSocial"></p-checkbox>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s5 m8 l3">
+            <input type="text" pInputText id="outroProgramSocial" formControlName="outroProgramSocial">
+            <label for="outroProgramSocial">Especifique o Programa</label>
+          </div>
+          <div class="input-field col s5 m8 l2">
+            <input type="text" pInputText id="valorProgramaSocial" formControlName="valorProgramaSocial" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+            <label for="valorProgramaSocial">Valor </label>
           </div>
           <div class="input-field col s3">
             <select materialize="material_select" [materializeSelectOptions]="selectOptions" formControlName="previdenciaSocial">
-              <option value="" disabled selected>Previdência Social</option>
+              <option value="" disabled selected>Selecione</option>
               <option *ngFor="let option of selectPrevidencia" [value]="option.id">{{option.descricao}}</option>
             </select>
-            <label>Selecione Previdência Social</label>
+            <label>Recebe algum benefício da Previdência Social?</label>
           </div>
           <div class="input-field col s5 m8 l2">
             <input type="text" pInputText id="outroPrevidenciaSocial" formControlName="outroPrevidenciaSocial">
@@ -231,11 +240,11 @@
 
 
       <p-tabPanel header="Composição Falimiliar">
-        <div class="row" formArrayName="composicaoFamiliar">
 
-          <div class="card-panel hoverable grey lighten-4">
-            <p-fieldset *ngFor="let familia of composicaoFamiliar.controls; let i = index" [formGroupName]="i">
-              <p-header>{{i + 1}}</p-header>
+        <div class="card-panel hoverable grey lighten-4" formArrayName="composicaoFamiliar">
+          <p-fieldset *ngFor="let familia of composicaoFamiliar.controls; let i = index" [formGroupName]="i">
+            <p-header>{{i + 1}}</p-header>
+            <div class="row">
               <div class="input-field col s12 m8 l2">
                 <p-inputMask mask="999.999.999-99" formControlName="cpf" placeholder="CPF"></p-inputMask>
               </div>
@@ -251,26 +260,33 @@
                 <input type="text" pInputText id="parentesco" required formControlName="parentesco" />
                 <label for="parentesco">Parentesco</label>
               </div>
+              <div class="input-field col s12 m4 l2">
+                <button pButton type="button" (click)="removerComposicaoFamiliar(i)" label="Remover" class="ui-button-danger"></button>
+              </div>
+            </div>
+
+            <div class="row">
               <div class="input-field col s12 m4 l3">
                 <input type="text" pInputText id="pareatividadentesco" required formControlName="atividade" />
                 <label for="atividade">Atividade</label>
               </div>
               <div class="input-field col s12 m4 l2">
-                <input type="text" pInputText id="renda" required formControlName="renda" />
+                <input type="text" pInputText id="renda" required formControlName="renda" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
                 <label for="rendacf">Renda</label>
               </div>
-
-              <button pButton type="button" (click)="removerComposicaoFamiliar(i)" label="Remover" class="ui-button-danger"></button>
-
-            </p-fieldset>
-            <br/>
-            <div class="row">
-              <button pButton type="button" (click)="adicionarComposicaoFamiliar()" label="Novo Membro" class="ui-button-success"></button>
             </div>
+          </p-fieldset>
+          <br/>
+          <div class="row">
+            <app-mensagem-erro [mostrarErro]="verificaValidTouched('composicaoFamiliar')" [msgErro]="msgErroFormArray()"></app-mensagem-erro>
           </div>
-
-
+          <br/>
+          <div class="row">
+            <button pButton type="button" (click)="adicionarComposicaoFamiliar()" label="Novo Membro" class="ui-button-success"></button>
+          </div>
         </div>
+
+
       </p-tabPanel>
 
       <p-tabPanel header="Situação Apresentada">
@@ -293,6 +309,6 @@
       </p-tabPanel>
 
     </p-tabView>
-    <p-button type="submit" icon="fa fa-fw fa-check" label="Cadastrar"></p-button>
+    <p-button type="submit" icon="fa fa-fw fa-check" label="Salvar"></p-button>
   </form>
 </div>

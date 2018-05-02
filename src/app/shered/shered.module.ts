@@ -18,8 +18,7 @@ import { PanelModule } from 'primeng/components/panel/panel';
 import { CheckboxModule } from 'primeng/components/checkbox/checkbox';
 import { FieldsetModule } from 'primeng/fieldset';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-
-
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 import { MensagemComponent } from './mensagem/mensagem.component';
 import { MensagemErroComponent } from './mensagem-erro/mensagem-erro.component';
@@ -44,7 +43,7 @@ import { MensagemErroComponent } from './mensagem-erro/mensagem-erro.component';
     CheckboxModule,
     FieldsetModule,
     InputTextareaModule,
-
+    CurrencyMaskModule 
 
   ],
   declarations: [
@@ -72,7 +71,8 @@ import { MensagemErroComponent } from './mensagem-erro/mensagem-erro.component';
     PanelModule,
     CheckboxModule,
     FieldsetModule,
-    InputTextareaModule
+    InputTextareaModule,
+    CurrencyMaskModule
   ],
   providers: [
     
