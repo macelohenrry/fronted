@@ -60,13 +60,73 @@ export class SolicitanteFormComponent implements OnInit, IFormCanDeactivate {
 
   getSolicitante(id: number) {
     this.solicitantesService.getSolicitante(id)
-      .subscribe(beneficio => {
-        this.preencherEditar(beneficio);
+      .subscribe(solicitante => {
+        this.preencherEditar(solicitante);
       });
   }
 
   preencherEditar(solicitante) {
-    console.log("Aqui");
+    this.solicitanteForm.patchValue({
+      id: solicitante.id,
+      beneficio: solicitante.beneficio,
+      nome: solicitante.nome,
+      apelido: solicitante.apelido,
+      email: solicitante.email,
+      contato: solicitante.contado,
+      cpf: solicitante.cpf,
+      rg: solicitante.rg,
+      orgaoExpedidor: solicitante.orgaoExpedidor,
+      dataNascimento: solicitante.dataNascimento,
+      nis: solicitante.nis,
+      estadoCivil: solicitante.estadoCivil,
+      situacaoApresentada: solicitante.situacaoApresentada,
+      observacao: solicitante.observacao,
+      certidaoNascimento: {
+        id: solicitante.certidaoNascimento.id,
+        numero: solicitante.certidaoNascimento.numero,
+        livro: solicitante.certidaoNascimento.livro,
+        folha: solicitante.certidaoNascimento.folha,
+        cartorio: solicitante.certidaoNascimento.cartorio
+      },
+      tituloEleitor: {
+        id: solicitante.tituloEleitor.id,
+        numero: solicitante.tituloEleitor.numero,
+        zona: solicitante.tituloEleitor.zona,
+        sessao: solicitante.tituloEleitor.sessao
+      },
+      endereco: {
+        id: solicitante.endereco.id,
+        cep: solicitante.endereco.cep,
+        rua: solicitante.endereco.rua,
+        bairro: solicitante.endereco.bairro,
+        numero: solicitante.endereco.numero,
+        complemento: solicitante.endereco.complemento,
+        pontoReferencia: solicitante.endereco.pontoReferencia
+      },
+      dadoSocioEconomico: {
+        id: solicitante.dadoSocioEconomico.id,
+        estuda:solicitante.dadoSocioEconomico.estuda,
+        escola: solicitante.dadoSocioEconomico.escola,
+        serie: solicitante.dadoSocioEconomico.serie,
+        trabalho: solicitante.dadoSocioEconomico.trabalho,
+        funcao: solicitante.dadoSocioEconomico.funcao,
+        renda: solicitante.dadoSocioEconomico.renda,
+        casa: solicitante.dadoSocioEconomico.casa,
+        valorAluguel: solicitante.dadoSocioEconomico.valorAluguel,
+        outroTipoCasa: solicitante.dadoSocioEconomico.outroTipoCasa,
+        aguaEncanada: solicitante.dadoSocioEconomico.aguaEncanada,
+        esgotoSanitario: solicitante.dadoSocioEconomico.esgotoSanitario,
+        energiaEletrica: solicitante.dadoSocioEconomico.energiaEletrica,
+        programaSocial: solicitante.dadoSocioEconomico.programaSocial,
+        valorProgramaSocial: solicitante.dadoSocioEconomico.valorProgramaSocial,
+        previdenciaSocial: solicitante.dadoSocioEconomico.previdenciaSocial,
+        outroPrevidenciaSocial: solicitante.dadoSocioEconomico.outroPrevidenciaSocial
+       },
+       composicaoFamiliar: [{
+         id: solicitante.composicaoFamiliar.id
+       }]
+
+    });
   }
 
   onSubmit() {
