@@ -22,7 +22,15 @@ export class SolicitantesService {
   });
 
   onSubimit(solicitante: FormGroup) {
-    return this.http.post(`${this.url}/solicitantes`, JSON.stringify(solicitante.value), { headers: this.headers });
+    if(solicitante.get("id").value === null)
+      return this.salvar(solicitante);
+    return this.atualizar(solicitante)
+  }
+  salvar(solicitante: FormGroup) {
+    return this.http.post(`${this.url}/solicitantes`, JSON.stringify(solicitante.value), { headers: this.headers }); 
+  }
+  atualizar(solicitante: FormGroup) {
+    return this.http.put(`${this.url}/solicitantes/${solicitante.get("id").value}`, JSON.stringify(solicitante.value), { headers: this.headers })
   }
 
   getEnumEstadoCilvel() {

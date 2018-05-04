@@ -1,3 +1,231 @@
-<div class="col s12 m12 l3">
-    {{ solicitante?.nome }}
+<div class="col s12 m12 l9">
+
+    <h5>Identificação</h5>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <label>Benefício:</label>
+            <span>{{ solicitante?.beneficio.descricao }}</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m12 l3">
+            <label>Nome:</label>
+            <span>{{ solicitante?.nome }}</span>
+        </div>
+        <div class="col s12 m12 l3">
+            <label>CPF:</label>
+            <span>{{ solicitante?.cpf }}</span>
+        </div>
+        <div class="col s12 m12 l3">
+            <label>RG:</label>
+            <span>{{ solicitante?.rg }}</span>
+        </div>
+        <div class="col s12 m12 l3">
+            <label>Expedidor:</label>
+            <span>{{ solicitante?.orgaoExpedidor }}</span>
+        </div>
+        <div class="col s12 m12 l3">
+            <label>Apelido:</label>
+            <span>{{ solicitante?.apelido }}</span>
+        </div>
+        <div class="col s12 m12 l3">
+            <label>email:</label>
+            <span>{{ solicitante?.email }}</span>
+        </div>
+        <div class="col s12 m12 l3">
+            <label>contato:</label>
+            <span>{{ solicitante?.contato }}</span>
+        </div>
+        <div class="col s12 m12 l3">
+            <label>Data Nascimento:</label>
+            <span>{{ solicitante?.dataNascimento | date:"dd/MM/yyyy" }}</span>
+        </div>
+        <div class="col s12 m12 l3">
+            <label>NIS:</label>
+            <span>{{ solicitante?.nis }}</span>
+        </div>
+        <div class="col s12 m12 l3">
+            <label>Estado Civil:</label>
+            <span>{{ solicitante?.estadoCivil }}</span>
+        </div>
+    </div>
+
+    <h5>Certidão Nascimento</h5>
+    <div class="row">
+        <div class="col s12 m12 l2">
+            <label>Número:</label>
+            <span>{{ solicitante?.certidaoNascimento.numero }}</span>
+        </div>
+        <div class="col s12 m12 l2">
+            <label>Livro:</label>
+            <span>{{ solicitante?.certidaoNascimento.livro }}</span>
+        </div>
+        <div class="col s12 m12 l2">
+            <label>Folha:</label>
+            <span>{{ solicitante?.certidaoNascimento.folha }}</span>
+        </div>
+        <div class="col s12 m12 l4">
+            <label>Cartório:</label>
+            <span>{{ solicitante?.certidaoNascimento.cartorio }}</span>
+        </div>
+    </div>
+
+    <h5>Título Eleitor</h5>
+    <div class="row">
+        <div class="col s12 m12 l3">
+            <label>Número:</label>
+            <span>{{ solicitante?.tituloEleitor.numero }}</span>
+        </div>
+        <div class="col s12 m12 l3">
+            <label>Zona:</label>
+            <span>{{ solicitante?.tituloEleitor.zona }}</span>
+        </div>
+        <div class="col s12 m12 l3">
+            <label>Sessão:</label>
+            <span>{{ solicitante?.tituloEleitor.sessao }}</span>
+        </div>
+    </div>
+
+    <h5>Endereço</h5>
+    <div class="row">
+        <div class="col s12 m12 l2">
+            <label>CEP:</label>
+            <span>{{ solicitante?.endereco.cep }}</span>
+        </div>
+        <div class="col s12 m12 l4">
+            <label>Rua:</label>
+            <span>{{ solicitante?.endereco.rua }}</span>
+        </div>
+        <div class="col s12 m12 l3">
+            <label>Bairro:</label>
+            <span>{{ solicitante?.endereco.bairro }}</span>
+        </div>
+        <div class="col s12 m12 l2">
+            <label>Número:</label>
+            <span>{{ solicitante?.endereco.numero }}</span>
+        </div>
+        <div class="col s12 m12 l2">
+            <label>Complemento:</label>
+            <span>{{ solicitante?.endereco.complemento }}</span>
+        </div>
+        <div class="col s12 m12 l4">
+            <label>Ponto Referência:</label>
+            <span>{{ solicitante?.endereco.pontoReferencia }}</span>
+        </div>
+    </div>
+
+    <h5>Dados Socioeconômico</h5>
+    <div class="row">
+        <div class="col s12 m12 l2">
+            <label>Estuda:</label>
+            <span>{{ solicitante?.dadoSocioEconomico.estuda ? 'Sim' : 'Não' }}</span>
+        </div>
+        <div class="col s12 m12 l4">
+            <label>Escola:</label>
+            <span>{{ solicitante?.dadoSocioEconomico.escola }}</span>
+        </div>
+        <div class="col s12 m12 l2">
+            <label>Série:</label>
+            <span>{{ solicitante?.dadoSocioEconomico.serie }}</span>
+        </div>
+        <div class="col s12 m12 l2">
+            <label>Trabalha?:</label>
+            <span>{{ solicitante?.dadoSocioEconomico.trabalha ? 'Sim' : 'Não' }}</span>
+        </div>
+        <div class="col s12 m12 l2">
+            <label>Funçao:</label>
+            <span>{{ solicitante?.dadoSocioEconomico.funcao }}</span>
+        </div>
+        <div class="col s12 m12 l2">
+            <label>Renda:</label>
+            <span>{{ solicitante?.dadoSocioEconomico.renda }}</span>
+        </div>
+        <div class="col s12 m12 l2">
+            <label>Casa:</label>
+            <span>{{ solicitante?.dadoSocioEconomico.casa }}</span>
+        </div>
+        <div class="col s12 m12 l2">
+            <label>Valor Aluguel:</label>
+            <span>{{ solicitante?.dadoSocioEconomico.valorAluguel }}</span>
+        </div>
+        <div class="col s12 m12 l3">
+            <label>Outro Tipo Casa:</label>
+            <span>{{ solicitante?.dadoSocioEconomico.outroTipoCasa }}</span>
+        </div>
+        <div class="col s12 m12 l2">
+            <label>Água Encanada:</label>
+            <span>{{ solicitante?.dadoSocioEconomico.aguaEncanada ? 'Sim' : 'Não' }}</span>
+        </div>
+        <div class="col s12 m12 l2">
+            <label>Esgoto Sanitário:</label>
+            <span>{{ solicitante?.dadoSocioEconomico.esgotoSanitario ? 'Sim' : 'Não' }}</span>
+        </div>
+        <div class="col s12 m12 l2">
+            <label>Energia Elétrica:</label>
+            <span>{{ solicitante?.dadoSocioEconomico.energiaEletrica ? 'Sim' : 'Não' }}</span>
+        </div>
+        <div class="col s12 m12 l2">
+            <label>Programa Social:</label>
+            <span>{{ solicitante?.dadoSocioEconomico.programaSocial ? 'Sim' : 'Não' }}</span>
+        </div>
+        <div class="col s12 m12 l2">
+            <label>Valor :</label>
+            <span>{{ solicitante?.dadoSocioEconomico.valor }}</span>
+        </div>
+        <div class="col s12 m12 l2">
+            <label>Previdência Social:</label>
+            <span>{{ solicitante?.dadoSocioEconomico.previdenciaSocial }}</span>
+        </div>
+        <div class="col s12 m12 l3">
+            <label>Decrição Previdência:</label>
+            <span>{{ solicitante?.dadoSocioEconomico.outroPrevidenciaSocial }}</span>
+        </div>
+
+    </div>
+
+    <h5>Composição Familiar</h5>
+    <div class="row">
+        <div class="row" *ngFor="let familia of solicitante.composicaoFamiliar">
+            <div class="col s12 m12 l3">
+                <label>Nome:</label>
+                <span>{{ familia.nome }}</span>
+            </div>
+            <div class="col s12 m12 l3">
+                <label>CPF:</label>
+                <span>{{ familia.cpf }}</span>
+            </div>
+            <div class="col s12 m12 l3">
+                <label>Idade:</label>
+                <span>{{ familia.idade }}</span>
+            </div>
+            <div class="col s12 m12 l3">
+                <label>Parentesco:</label>
+                <span>{{ familia.parentesco }}</span>
+            </div>
+            <div class="col s12 m12 l3">
+                <label>Atividade:</label>
+                <span>{{ familia.atividade }}</span>
+            </div>
+            <div class="col s12 m12 l3">
+                <label>Renda:</label>
+                <span>{{ familia.renda }}</span>
+            </div>
+        </div>
+    </div>
+
+    <h5>Situação Apresentada e Observação</h5>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <label>Situação Apresentada:</label>
+            <span>{{ solicitante?.situacaoApresentada }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <label>Observação:</label>
+            <span>{{ solicitante?.observacao }}</span>
+        </div>
+    </div>
+
 </div>
