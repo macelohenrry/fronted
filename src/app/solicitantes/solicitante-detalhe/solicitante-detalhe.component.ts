@@ -13,7 +13,7 @@ import { Solicitante } from './../../model/solicitante';
 })
 export class SolicitanteDetalheComponent implements OnInit {
 
-  private solicitante: Solicitante;
+  solicitante: Solicitante;
   private inscricao: Subscription;
 
   constructor(

@@ -9,10 +9,11 @@ import 'rxjs/add/operator/map';
 export class AuthService {
 
   url = "http://localhost:8080";
+  jwtPayload: any;
 
   constructor(
     private http: Http,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder
   ) { }
 
   private headers = new Headers({

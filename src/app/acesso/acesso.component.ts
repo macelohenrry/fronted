@@ -17,8 +17,8 @@ import { AuthService } from './auth.service';
 })
 export class AcessoComponent implements OnInit {
 
-  private formularioLogin: FormGroup;
-  private acesso: Acesso;
+  formularioLogin: FormGroup;
+  acesso: Acesso;
 
   constructor(
     private router: Router,

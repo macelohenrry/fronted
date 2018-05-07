@@ -14,7 +14,7 @@ import { Beneficio } from '../model/model';
 })
 export class BeneficioComponent implements OnInit {
 
-  private beneficios: Beneficio[];
+  beneficios: Beneficio[];
   
   
   constructor(

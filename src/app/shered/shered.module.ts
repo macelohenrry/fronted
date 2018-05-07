@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/components/button/button';
 import { MessageModule } from 'primeng/components/message/message';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { GrowlModule } from 'primeng/components/growl/growl';
 import { TabViewModule } from 'primeng/components/tabview/tabview';
 import { KeyFilterModule } from 'primeng/keyfilter';
@@ -34,6 +35,7 @@ import { MensagemErroComponent } from './mensagem-erro/mensagem-erro.component';
     ButtonModule,
     MessageModule,
     InputTextModule,
+    ConfirmDialogModule,
     GrowlModule,
     TabViewModule,
     KeyFilterModule,
@@ -63,6 +65,7 @@ import { MensagemErroComponent } from './mensagem-erro/mensagem-erro.component';
     ButtonModule,
     MessageModule,
     InputTextModule,
+    ConfirmDialogModule,
     GrowlModule,
     TabViewModule,
     KeyFilterModule,

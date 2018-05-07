@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app.routing.module';
 
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { GrowlModule } from 'primeng/components/growl/growl';
 
@@ -46,6 +47,7 @@ import { AuthGuard } from './guards/auth.guard';
       provide: LOCALE_ID, 
       useValue: 'pt-BR'
     },
+    ConfirmationService,
     MessageService, 
     AuthService, 
     AuthGuard

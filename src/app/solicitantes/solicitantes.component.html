@@ -1,5 +1,12 @@
 <div class="col s12 m12 l9">
-  <p-table #dt [value]="solicitantes" >
+  <p-table #dt [value]="solicitantes" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="caption">
+      <div style="text-align: right">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')"
+          style="width:auto">
+      </div>
+    </ng-template>
     <ng-template pTemplate="header">
       <tr>
         <th>CPF</th>
@@ -16,12 +23,12 @@
         <td>{{solicitante.apelido}}</td>
         <td>{{solicitante.rg}}</td>
         <td>
-            <a [routerLink]="['/solicitantes', solicitante.id, 'editar']" class="btn-floating waves-effect waves-light red">
-              <i class="material-icons right">create</i>
-            </a>
-            <a [routerLink]="['/solicitantes', solicitante.id]" class="btn-floating waves-effect teal lighten-2">
-              <i class="material-icons right">search</i>
-            </a>
+          <a [routerLink]="['/solicitantes', solicitante.id, 'editar']" class="btn-floating waves-effect waves-light red">
+            <i class="material-icons right">create</i>
+          </a>
+          <a [routerLink]="['/solicitantes', solicitante.id]" class="btn-floating waves-effect teal lighten-2">
+            <i class="material-icons right">search</i>
+          </a>
         </td>
       </tr>
     </ng-template>

@@ -5,8 +5,10 @@ import { FormGroup, Validators, FormBuilder, FormControl, FormArray } from '@ang
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { IFormCanDeactivate } from './../../guards/iform-candeactivate';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { MessageService } from 'primeng/components/common/messageservice';
+
+import { IFormCanDeactivate } from './../../guards/iform-candeactivate';
 import { SolicitantesService } from './../solicitantes.service';
 import { BeneficioService } from './../../beneficio/beneficio.service';
 import { EEstadoCivil, ComposicaoFamiliar } from './../../model/solicitante';
@@ -19,13 +21,12 @@ import { EEstadoCivil, ComposicaoFamiliar } from './../../model/solicitante';
 export class SolicitanteFormComponent implements OnInit, IFormCanDeactivate {
 
   private inscricao: Subscription;
-  private solicitanteForm: FormGroup;
-  private selectEstadoCivil: any[];
-  private selectTrabalho: any[];
-  private selectCasa: any[];
-  private selectPrevidencia: any[];
-  private selectBeneficios: Beneficio[];
-
+  solicitanteForm: FormGroup;
+  selectEstadoCivil: any[];
+  selectTrabalho: any[];
+  selectCasa: any[];
+  selectPrevidencia: any[];
+  selectBeneficios: Beneficio[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,7 +34,8 @@ export class SolicitanteFormComponent implements OnInit, IFormCanDeactivate {
     private beneficioService: BeneficioService,
     private messageService: MessageService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private confirmationService: ConfirmationService
   ) {
     this.selectEstadoCivil = solicitantesService.getEnumEstadoCilvel();
     this.selectTrabalho = solicitantesService.getEnumTrablho();
@@ -43,7 +45,7 @@ export class SolicitanteFormComponent implements OnInit, IFormCanDeactivate {
   }
 
   ngOnInit() {
-    
+
     this.inicializaCampos();
 
     this.beneficioService.getBeneficios()
@@ -66,6 +68,7 @@ export class SolicitanteFormComponent implements OnInit, IFormCanDeactivate {
   }
 
   preencherEditar(solicitante) {
+
     this.solicitanteForm.patchValue({
       id: solicitante.id,
       beneficio: solicitante.beneficio,
@@ -105,7 +108,7 @@ export class SolicitanteFormComponent implements OnInit, IFormCanDeactivate {
       },
       dadoSocioEconomico: {
         id: solicitante.dadoSocioEconomico.id,
-        estuda:solicitante.dadoSocioEconomico.estuda,
+        estuda: solicitante.dadoSocioEconomico.estuda,
         escola: solicitante.dadoSocioEconomico.escola,
         serie: solicitante.dadoSocioEconomico.serie,
         trabalho: solicitante.dadoSocioEconomico.trabalho,
@@ -121,11 +124,22 @@ export class SolicitanteFormComponent implements OnInit, IFormCanDeactivate {
         valorProgramaSocial: solicitante.dadoSocioEconomico.valorProgramaSocial,
         previdenciaSocial: solicitante.dadoSocioEconomico.previdenciaSocial,
         outroPrevidenciaSocial: solicitante.dadoSocioEconomico.outroPrevidenciaSocial
-       },
-       composicaoFamiliar: [{
-         id: solicitante.composicaoFamiliar.id
-       }]
+      }
+    });
 
+
+    solicitante.composicaoFamiliar.map(familia => {
+      this.composicaoFamiliar.push(
+        this.formBuilder.group({
+          id: [familia.id],
+          nome: [familia.nome, Validators.required],
+          cpf: [familia.cpf, Validators.required],
+          idade: [familia.idade, Validators.required],
+          parentesco: [familia.parentesco, Validators.required],
+          atividade: [familia.atividade, Validators.required],
+          renda: [familia.renda, Validators.required]
+        })
+      );
     });
   }
 

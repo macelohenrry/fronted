@@ -130,8 +130,8 @@
             <span>{{ solicitante?.dadoSocioEconomico.serie }}</span>
         </div>
         <div class="col s12 m12 l2">
-            <label>Trabalha?:</label>
-            <span>{{ solicitante?.dadoSocioEconomico.trabalha ? 'Sim' : 'Não' }}</span>
+            <label>Trabalho:</label>
+            <span>{{ solicitante?.dadoSocioEconomico.trabalho }}</span>
         </div>
         <div class="col s12 m12 l2">
             <label>Funçao:</label>
@@ -171,7 +171,7 @@
         </div>
         <div class="col s12 m12 l2">
             <label>Valor :</label>
-            <span>{{ solicitante?.dadoSocioEconomico.valor }}</span>
+            <span>{{ solicitante?.dadoSocioEconomico.valorProgramaSocial }}</span>
         </div>
         <div class="col s12 m12 l2">
             <label>Previdência Social:</label>
@@ -186,7 +186,7 @@
 
     <h5>Composição Familiar</h5>
     <div class="row">
-        <div class="row" *ngFor="let familia of solicitante.composicaoFamiliar">
+        <div class="row" *ngFor="let familia of solicitante?.composicaoFamiliar">
             <div class="col s12 m12 l3">
                 <label>Nome:</label>
                 <span>{{ familia.nome }}</span>

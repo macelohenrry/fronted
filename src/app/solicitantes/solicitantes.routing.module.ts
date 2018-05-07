@@ -12,7 +12,10 @@ const solicitantesRoutes: Routes = [
         canDeactivate: [SolicitantesDeactivateGuard]
     },
     { path: ':id', component: SolicitanteDetalheComponent },
-    { path: ':id/editar', component: SolicitanteFormComponent }
+    { 
+        path: ':id/editar', component: SolicitanteFormComponent,
+        canDeactivate: [SolicitantesDeactivateGuard] 
+    }
 ]
 
 @NgModule({
