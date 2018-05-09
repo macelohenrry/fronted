@@ -16,6 +16,10 @@ const appRoutes: Routes = [
         loadChildren: 'app/beneficio/beneficio.module#BeneficioModule',
         canActivate: [AuthGuard] 
     },
+    { path: 'usuarios', 
+        loadChildren: 'app/usuarios/usuarios.module#UsuariosModule',
+        canActivate: [AuthGuard] 
+    },
     { path:  'acesso', component: AcessoComponent },
     { path: '', 
         component: InicioComponent,

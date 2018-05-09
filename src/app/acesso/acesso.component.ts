@@ -6,7 +6,6 @@ import { Router } from '@angular/router'
 import { MessageService } from 'primeng/components/common/messageservice';
 
 import { EMensage } from './../model/model';
-import { Acesso } from './../model/model';
 import { AuthService } from './auth.service';
 
 
@@ -18,7 +17,6 @@ import { AuthService } from './auth.service';
 export class AcessoComponent implements OnInit {
 
   formularioLogin: FormGroup;
-  acesso: Acesso;
 
   constructor(
     private router: Router,

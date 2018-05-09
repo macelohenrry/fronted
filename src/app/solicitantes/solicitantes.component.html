@@ -1,11 +1,7 @@
 <div class="col s12 m12 l9">
   <p-table #dt [value]="solicitantes" [paginator]="true" [rows]="10">
     <ng-template pTemplate="caption">
-      <div style="text-align: right">
-        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-        <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')"
-          style="width:auto">
-      </div>
+      Lista dos Solicitantes
     </ng-template>
     <ng-template pTemplate="header">
       <tr>

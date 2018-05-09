@@ -1,10 +1,15 @@
-export class Acesso {
+export class User {
+    id: number;
     username: string;
-    role: Role[];
+    password: string;
+    email: string;
+    roles: Role[];
 }
 
 export class Role {
-    role: string;
+    id: number;
+    name: string;
+    descricao: string;
 }
 
 export class Beneficio {
