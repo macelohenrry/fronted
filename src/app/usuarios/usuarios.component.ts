@@ -34,7 +34,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   salvar() {
-
+    console.log("Salvou");
   }
 
   remover() {
