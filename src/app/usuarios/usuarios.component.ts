@@ -17,7 +17,7 @@ export class UsuariosComponent implements OnInit {
   selectedUser: User;
   newUser: boolean;
   users: User[];
-
+ 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
