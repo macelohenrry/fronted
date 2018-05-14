@@ -30,7 +30,7 @@ export class SolicitantesService {
     return this.http.post(`${this.url}/solicitantes`, JSON.stringify(solicitante.value), { headers: this.headers }); 
   }
   atualizar(solicitante: FormGroup) {
-    return this.http.put(`${this.url}/solicitantes/${solicitante.get("id").value}`, JSON.stringify(solicitante.value), { headers: this.headers })
+    return this.http.put(`${this.url}/solicitantes/${solicitante.get("id").value}`, JSON.stringify(solicitante.value), { headers: this.headers });
   }
 
   getEnumEstadoCilvel() {

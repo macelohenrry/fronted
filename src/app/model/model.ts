@@ -24,6 +24,8 @@ export enum EMensage {
     ErroCampoObrigatorio = "Obrigatório!",
     ErroPreencherTodosCampos = "Todos os campos são Obrigatório!",
     MsgSucessoBeneficio = "As Informações foram salvas com sucesso.",
+    MsgSucesso = "As Informações foram salvas com sucesso.",
+    ErroEmail = "Email Inválido.",
     MsgInfoSairRota = "Tem certeza que deseja sair dessa página? Quaisquer modificações serão perdidas."
 }
 

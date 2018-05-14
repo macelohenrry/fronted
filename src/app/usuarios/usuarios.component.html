@@ -1,9 +1,11 @@
 <div class="col s12 m12 l9">
   <p-table [value]="users" selectionMode="single" [(selection)]="selectedUser" (onRowSelect)="onRowSelect($event)" [paginator]="true"
     [rows]="15">
+    <ng-template pTemplate="caption">
+      Todos os Usuários
+    </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th>#</th>
         <th>Usuário</th>
         <th>Email</th>
         <th>Permissão</th>
@@ -23,21 +25,23 @@
     </ng-template>
   </p-table>
 
-  <p-dialog header="Informações Usuário" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="300">
+  <p-dialog header="Informações Usuário" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="400">
     <form [formGroup]="userForm">
       <div class="input-field col s12 m12 l12">
-        <input pInputText id="username" formControlName="username" />
-        <label for="username">Usuário</label>
+        <input pInputText id="username" formControlName="username" placeholder="Usuário" />
+        <app-mensagem-erro [mostrarErro]="verificaValidTouched('username')" [msgErro]="msgErro()"></app-mensagem-erro>
       </div>
       <div class="input-field col s12 m12 l12">
-        <input pInputText id="email" formControlName="email" />
-        <label for="email">Email</label>
+        <input pInputText id="email" type="email" formControlName="email" placeholder="email" />
+        <app-mensagem-erro [mostrarErro]="verificaValidTouched('email')" [msgErro]="msgEmailErro()"></app-mensagem-erro>
       </div>
       <div class="input-field col s12 m12 l12">
-        <input type="password" pPassword id="password" formControlName="password" />
-        <label for="password">Senha</label>
+        <input type="password" pPassword id="password" formControlName="password" placeholder="Senha" />
+        <app-mensagem-erro [mostrarErro]="verificaValidTouched('password')" [msgErro]="msgErro()"></app-mensagem-erro>
       </div>
- 
+      <div class="col s12 m12 l12">
+        <p-multiSelect [options]="multiSelectRoles" formControlName="roles" optionLabel="descricao" [style]="{'width':'250px'}"></p-multiSelect>
+      </div>
     </form>
     <p-footer>
       <div class="ui-dialog-buttonpane ui-helper-clearfix">

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
-import { User } from './../model/model';
+import { MessageService } from 'primeng/components/common/messageservice';
+
+import { User, EMensage, Role } from './../model/model';
+import { UsuariosService } from './usuarios.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -17,16 +20,26 @@ export class UsuariosComponent implements OnInit {
   selectedUser: User;
   newUser: boolean;
   users: User[];
- 
-  constructor(private formBuilder: FormBuilder) { }
+
+  multiSelectRoles: Role[];
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private usuariosService: UsuariosService,
+    private messageService: MessageService,
+  ) { }
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
       id: [null],
       username: [null, Validators.required],
       password: [null, Validators.required],
-      email: [null, Validators.email]
+      email: [null, Validators.email],
+      roles: [null, Validators.required]
     });
+
+    this.usuariosService.getRoles().subscribe(res => { this.multiSelectRoles = res })
+
   }
 
   showDialogToAdd() {
@@ -34,7 +47,19 @@ export class UsuariosComponent implements OnInit {
   }
 
   salvar() {
-    console.log("Salvou");
+    console.log(this.userForm.value);
+    if (this.userForm.valid) {
+      this.usuariosService.salvar(this.userForm)
+        .subscribe(res => {
+          this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: EMensage.MsgSucesso });
+          this.userForm .reset();
+        },
+          error => {
+            this.messageService.add({ severity: 'error', summary: 'Erro', detail: EMensage.ErroInformacaoInvalida });
+          });
+    } else {
+      this.verificaValidacoesForm(this.userForm);
+    }
   }
 
   remover() {
@@ -44,6 +69,28 @@ export class UsuariosComponent implements OnInit {
   onRowSelect(event) {
 
   }
+
+  verificaValidacoesForm(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(campo => {
+      const controle = formGroup.get(campo)
+      controle.markAsTouched();
+      if (controle instanceof FormGroup) {
+        this.verificaValidacoesForm(controle);
+      }
+    });
+  }
+
+  verificaValidTouched(campo) {
+    return !this.userForm.get(campo).valid && (this.userForm.get(campo).touched || this.userForm.get(campo).dirty);
+  }
+
+  msgErro() {
+    return EMensage.ErroCampoObrigatorio;
+  }
+  msgEmailErro() {
+    return EMensage.ErroEmail;
+  }
+
 
 
 }
