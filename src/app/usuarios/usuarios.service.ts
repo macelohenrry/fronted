@@ -17,7 +17,7 @@ export class UsuariosService {
   });
 
   salvar(user: FormGroup) {
-    if(user.get("id") === null)
+    if(user.get("id").value === null)
       return this.adicionar(user);
     return this.atualizar(user);
   }
@@ -27,6 +27,15 @@ export class UsuariosService {
   }
   atualizar(user: FormGroup) {
     return this.http.put(`${this.url}/usuarios/${user.get("id").value}`, JSON.stringify(user.value), { headers: this.headers });
+  }
+
+  getUsuarios() {
+    return this.http.get(`${this.url}/usuarios`, { headers: this.headers })
+      .map((res: Response) => res.json());
+  }
+
+  remover(id: number) {
+    return this.http.delete(`${this.url}/usuarios/${id}`, { headers: this.headers })
   }
 
   getRoles() {
