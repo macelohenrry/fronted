@@ -57,7 +57,7 @@
     </form>
     <p-footer>
       <div class="ui-dialog-buttonpane ui-helper-clearfix">
-        <button type="button" pButton icon="fa-close" (click)="confirmacao()" label="Remover"></button>
+        <button *ngIf="newUser"  type="button" pButton icon="fa-close" (click)="confirmacao()" label="Remover"></button>
         <button type="button" pButton icon="fa-check" (click)="salvar()" label="Salvar"></button>
       </div>
     </p-footer>

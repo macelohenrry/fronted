@@ -1,7 +1,7 @@
+import { Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { NgLocalization } from '@angular/common';
 
 import { MessageService } from 'primeng/components/common/messageservice';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
@@ -36,6 +36,7 @@ export class UsuariosComponent implements OnInit {
 
   ngOnInit() {
     this.usuariosService.getUsuarios().subscribe(res => { this.usuarios = res })
+    this.usuariosService.getRoles().subscribe(res => { this.multiSelectRoles = res })
 
     this.userForm = this.formBuilder.group({
       id: [null],
@@ -45,26 +46,28 @@ export class UsuariosComponent implements OnInit {
       roles: [null, Validators.required]
     });
 
-    this.usuariosService.getRoles().subscribe(res => { this.multiSelectRoles = res })
 
   }
 
   showDialogToAdd() {
     this.userForm.reset();
     this.displayDialog = true;
+    this.newUser = false;
   }
 
   salvar() {
     if (this.userForm.valid) {
       this.usuariosService.salvar(this.userForm)
-        .subscribe(res => {
+        .subscribe((res: Response) => {
           this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: EMensage.MsgSucesso });
           this.userForm.reset();
+          this.router.navigate(['/']);
         },
           error => {
-            this.messageService.add({ severity: 'error', summary: 'Erro', detail: EMensage.ErroInformacaoInvalida });
+            for(let erro of error.text().split("."))
+              if(erro != "")
+                this.messageService.add({ severity: 'warn', summary: 'Atenção', detail: erro });
           });
-      this.router.navigate(['/']);
     } else {
       this.verificaValidacoesForm(this.userForm);
     }
@@ -99,6 +102,7 @@ export class UsuariosComponent implements OnInit {
       roles: event.data.roles
     });
     this.displayDialog = true;
+    this.newUser = true;
   }
 
   verificaValidacoesForm(formGroup: FormGroup) {
