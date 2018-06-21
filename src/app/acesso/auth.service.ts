@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AuthService {
 
-  url = "http://servicos.cabo.pe.gov.br:8080";
+  private url = "http://localhost:8080";
   jwtPayload: any;
 
   constructor(
